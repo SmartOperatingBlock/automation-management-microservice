@@ -1,0 +1,11 @@
+[versions]
+junit = "5.8.1"
+
+[libraries]
+jacamo = { module = "org.jacamo:jacamo", version = "1.1" }
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+
+[bundles]
+
+[plugins]
