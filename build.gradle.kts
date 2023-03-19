@@ -8,8 +8,9 @@
 
 plugins {
     application
-    java
     eclipse
+    java
+    alias(libs.plugins.java.qa)
 }
 
 group = "io.github.smartoperatingblock"

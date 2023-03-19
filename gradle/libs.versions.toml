@@ -9,3 +9,4 @@ junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref 
 [bundles]
 
 [plugins]
+java-qa = { id = "org.danilopianini.gradle-java-qa", version = "1.4.0"}
