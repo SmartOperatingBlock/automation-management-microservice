@@ -10,18 +10,30 @@
 
 package example;
 
-import cartago.*;
+import cartago.Artifact;
+import cartago.OPERATION;
+import cartago.ObsProperty;
 
+/**
+ * Example class for Cartago env.
+ */
 public class Counter extends Artifact {
-	void init(int initialValue) {
-		defineObsProperty("count", initialValue);
-	}
+    /**
+     * Init counter.
+     * @param initialValue
+     */
+    void init(final int initialValue) {
+        defineObsProperty("count", initialValue);
+    }
 
-	@OPERATION
-	void inc() {
-		ObsProperty prop = getObsProperty("count");
-		prop.updateValue(prop.intValue()+1);
-		signal("tick");
-	}
+    /**
+     * Inc operation.
+     */
+    @OPERATION
+    void inc() {
+        final ObsProperty prop = getObsProperty("count");
+        prop.updateValue(prop.intValue() + 1);
+        signal("tick");
+    }
 }
 
