@@ -23,6 +23,13 @@ gradleEnterprise {
 
 gitHooks {
     preCommit {
+        tasks("checkstyleMain")
+        tasks("checkstyleTest")
+        tasks("pmdMain")
+        tasks("pmdTest")
+        tasks("cpdJavaCheck")
+        tasks("spotbugsMain")
+        tasks("spotbugsTest")
     }
 
     commitMsg {
