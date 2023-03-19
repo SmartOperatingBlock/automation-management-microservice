@@ -42,12 +42,6 @@ tasks.withType<Test> {
     }
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(15))
-    }
-}
-
 sourceSets.getByName("main") {
     java.srcDir("src/env")
     java.srcDir("src/agt")
