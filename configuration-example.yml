@@ -1,0 +1,28 @@
+operating_room:
+  temperature: 25.0
+  humidity: 55.0
+  ambient_illuminance: 100
+  surgical_illuminance: 100000
+  standby_mode:
+    enabled: yes
+    minutes_to_enable: 20
+    temperature: 22.0
+    humidity: 55.0
+    ambient_illuminance: 50
+    surgical_illuminance: 150
+
+pre_operating_room:
+  temperature: 25.0
+  humidity: 55.0
+  ambient_illuminance: 100
+  standby_mode:
+    enabled: yes
+    minutes_to_enable: 20
+    temperature: 22.0
+    humidity: 55.0
+    ambient_illuminance: 50
+
+medical_technology_scenarios:
+  - medical_technology_type: ENDOSCOPE
+    ambient_light: 60
+    surgical_light: 150000
