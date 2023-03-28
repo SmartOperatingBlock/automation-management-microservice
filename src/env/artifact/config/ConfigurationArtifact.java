@@ -6,7 +6,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package config;
+package artifact.config;
 
 import cartago.Artifact;
 import cartago.OPERATION;

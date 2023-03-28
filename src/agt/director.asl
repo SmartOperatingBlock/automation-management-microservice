@@ -14,7 +14,7 @@
 !loadConfig.
 
 +!loadConfig
-    <- makeArtifact(configuration, "config.ConfigurationArtifact", [], ConfigurationId);
+    <- makeArtifact(configuration, "artifact.config.ConfigurationArtifact", [], ConfigurationId);
        focus(ConfigurationId);
        load.
 
