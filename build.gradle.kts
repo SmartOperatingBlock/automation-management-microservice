@@ -27,6 +27,7 @@ repositories {
 
 dependencies {
     implementation(libs.jacamo)
+    implementation(libs.snakeyaml)
     testImplementation(libs.junit.api)
     testRuntimeOnly(libs.junit.engine)
 }
