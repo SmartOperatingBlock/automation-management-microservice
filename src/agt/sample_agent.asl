@@ -11,10 +11,19 @@
 /* Initial goals */
 
 !start.
+!loadConfig.
 
 /* Plans */
 
 +!start : true <- .print("hello world.").
+
++!loadConfig
+    <- makeArtifact(configuration, "config.ConfigurationArtifact", [], ConfigurationId);
+       focus(ConfigurationId);
+       load.
+
++config(X)
+    <- println(X).
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
