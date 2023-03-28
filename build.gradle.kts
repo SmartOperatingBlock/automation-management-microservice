@@ -23,10 +23,15 @@ repositories {
     maven {
         url = uri("https://repo.gradle.org/gradle/libs-releases")
     }
+    maven {
+        url = uri("https://packages.confluent.io/maven")
+    }
 }
 
 dependencies {
     implementation(libs.jacamo)
+    implementation(libs.kafka.clients)
+    implementation(libs.kafka.json)
     implementation(libs.snakeyaml)
     testImplementation(libs.junit.api)
     testRuntimeOnly(libs.junit.engine)
