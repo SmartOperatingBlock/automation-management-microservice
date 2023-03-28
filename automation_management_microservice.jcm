@@ -7,11 +7,10 @@
  */
 
 mas automation_management_microservice {
-    agent bob: sample_agent.asl {
-      focus: w.c1 
-    }
+    agent bob: sample_agent.asl
 
-    workspace w {
-      artifact c1: example.Counter(3) 
-    }
+    // workspace w {
+    //     artifact config: config.ConfigurationArtifact()
+    // }
+     
 }
