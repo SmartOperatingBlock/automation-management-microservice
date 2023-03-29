@@ -29,6 +29,7 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.gson)
     implementation(libs.jacamo)
     implementation(libs.kafka.clients)
     implementation(libs.kafka.json)
