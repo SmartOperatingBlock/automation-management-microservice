@@ -10,6 +10,8 @@ package application.presenter.event.serialization;
 
 import application.presenter.event.model.Event;
 
+import java.util.Optional;
+
 /**
  * Interface that models an event deserializer.
  */
@@ -18,7 +20,7 @@ public interface EventDeserializer {
      * Deserialize an event from string.
      * @param eventKey the key of the event.
      * @param event the event in string format.
-     * @return the deserialized event.
+     * @return the deserialized event as an optional.
      */
-    Event<?> fromString(String eventKey, String event);
+    Optional<Event<?>> fromString(String eventKey, String event);
 }

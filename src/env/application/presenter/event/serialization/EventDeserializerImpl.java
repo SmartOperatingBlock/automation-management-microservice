@@ -22,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Implementation of the {@link EventDeserializer} interface that allows an event to be
@@ -45,10 +46,9 @@ public class EventDeserializerImpl implements EventDeserializer {
     }
 
     @Override
-    public final Event<?> fromString(final String eventKey, final String event) {
-        if (!this.typeMap.containsKey(eventKey)) {
-            throw new IllegalArgumentException("Event not supported");
-        }
-        return new Gson().fromJson(event, this.typeMap.get(eventKey));
+    public final Optional<Event<?>> fromString(final String eventKey, final String event) {
+        return Optional.of(eventKey)
+                .filter(this.typeMap::containsKey)
+                .map(key -> new Gson().fromJson(event, this.typeMap.get(key)));
     }
 }

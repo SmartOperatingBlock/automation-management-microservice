@@ -72,7 +72,7 @@ public class KafkaClient implements EventManager {
             this.kafkaConsumer.poll(Duration.ofMillis(POLLING_TIME)).forEach(event -> {
                 // log the event
                 Logger.getLogger(KafkaClient.class.getName()).fine(event.toString());
-                eventConsumer.accept(this.eventDeserializer.fromString(event.key(), event.value()));
+                this.eventDeserializer.fromString(event.key(), event.value()).ifPresent(eventConsumer);
             });
         }
     }
