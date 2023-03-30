@@ -8,18 +8,23 @@
 
 package infrastructure.events;
 
+import application.controller.manager.EventManager;
+import application.presenter.event.model.Event;
+import application.presenter.event.serialization.EventDeserializer;
+import application.presenter.event.serialization.EventDeserializerImpl;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 /**
  * This class manage the Kafka client needed to consume events.
  */
-public class KafkaClient {
+public class KafkaClient implements EventManager {
     private static final String BOOSTRAP_SERVER_URL_VARIABLE = "BOOTSTRAP_SERVER_URL";
     private static final String SCHEMA_REGISTRY_URL_VARIABLE = "SCHEMA_REGISTRY_URL";
     private static final String ROOM_EVENT_TOPIC = "room-events";
@@ -29,6 +34,7 @@ public class KafkaClient {
     private static KafkaClient instance;
 
     private final KafkaConsumer<String, String> kafkaConsumer;
+    private final EventDeserializer eventDeserializer;
 
     /**
      * Obtain the current instance of the Kafka Client.
@@ -54,15 +60,19 @@ public class KafkaClient {
                 )
         );
         this.kafkaConsumer.subscribe(List.of(ROOM_EVENT_TOPIC, MEDICAL_TECHNOLOGY_EVENT_TOPIC));
+        this.eventDeserializer = new EventDeserializerImpl();
     }
 
     /**
      * Polling cycle to obtain all the events.
      */
-    public void poll() {
+    @Override
+    public void poll(final Consumer<Event<?>> eventConsumer) {
         while (true) {
             this.kafkaConsumer.poll(Duration.ofMillis(POLLING_TIME)).forEach(event -> {
+                // log the event
                 Logger.getLogger(KafkaClient.class.getName()).fine(event.toString());
+                eventConsumer.accept(this.eventDeserializer.fromString(event.key(), event.value()));
             });
         }
     }
