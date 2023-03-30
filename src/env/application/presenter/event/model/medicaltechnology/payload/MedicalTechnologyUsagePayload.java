@@ -15,7 +15,7 @@ import application.presenter.event.model.medicaltechnology.MedicalTechnologyType
  */
 public class MedicalTechnologyUsagePayload {
     /** Medical Technology Usage event key. */
-    public static final String MEDICAL_TECHNOLOGY_USAGE_EVENT = "MEDICAL_TECHNOLOGY_USAGE_EVENT";
+    public static final String MEDICAL_TECHNOLOGY_USAGE_EVENT_KEY = "MEDICAL_TECHNOLOGY_USAGE_EVENT";
     private final String medicalTechnologyID;
     private final MedicalTechnologyTypePayload medicalTechnologyType;
     private final boolean inUse;
