@@ -12,6 +12,8 @@ package application.presenter.event.model.roomevent.payload;
  * Temperature payload for {@link application.presenter.event.model.roomevent.RoomEvent}.
  */
 public class TemperaturePayload implements RoomEventPayload {
+    /** Temperature event key. */
+    public static final String TEMPERATURE_EVENT_KEY = "TEMPERATURE_EVENT";
     private final double temperatureValue;
     private final String temperatureUnit;
 

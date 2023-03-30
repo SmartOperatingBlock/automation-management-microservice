@@ -12,6 +12,8 @@ package application.presenter.event.model.roomevent.payload;
  * Humidity payload for {@link application.presenter.event.model.roomevent.RoomEvent}.
  */
 public class HumidityPayload implements RoomEventPayload {
+    /** Humidity event key. */
+    public static final String HUMIDITY_EVENT_KEY = "HUMIDITY_EVENT";
     private final int humidityPercentage;
 
     /**

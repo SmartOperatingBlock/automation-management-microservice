@@ -12,6 +12,8 @@ package application.presenter.event.model.roomevent.payload;
  * Luminosity payload for {@link application.presenter.event.model.roomevent.RoomEvent}.
  */
 public class LuminosityPayload implements RoomEventPayload {
+    /** Luminosity event key. */
+    public static final String LUMINOSITY_EVENT_KEY = "LUMINOSITY_EVENT";
     private final double luminosityValue;
     private final String luminosityUnit;
 

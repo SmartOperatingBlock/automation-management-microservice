@@ -12,6 +12,8 @@ package application.presenter.event.model.roomevent.payload;
  * Presence payload for {@link application.presenter.event.model.roomevent.RoomEvent}.
  */
 public class PresencePayload implements RoomEventPayload {
+    /** Presence event key. */
+    public static final String PRESENCE_EVENT_KEY = "PRESENCE_EVENT";
     private final boolean presenceDetected;
 
     /**
