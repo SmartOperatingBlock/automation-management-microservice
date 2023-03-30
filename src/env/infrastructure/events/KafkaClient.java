@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
-import java.util.logging.Logger;
 
 /**
  * This class manage the Kafka client needed to consume events.
@@ -70,8 +69,6 @@ public class KafkaClient implements EventManager {
     public void poll(final Consumer<Event<?>> eventConsumer) {
         while (true) {
             this.kafkaConsumer.poll(Duration.ofMillis(POLLING_TIME)).forEach(event -> {
-                // log the event
-                Logger.getLogger(KafkaClient.class.getName()).fine(event.toString());
                 this.eventDeserializer.fromString(event.key(), event.value()).ifPresent(eventConsumer);
             });
         }
@@ -83,7 +80,7 @@ public class KafkaClient implements EventManager {
             "schema.registry.url", schemaRegistryUrl,
             "group.id", "automation-management-consumer",
             "key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer",
-            "value.deserializer", "io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer"
+            "value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer"
         );
     }
 }
