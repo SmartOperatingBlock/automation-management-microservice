@@ -8,4 +8,5 @@
 
 mas automation_management_microservice {
     agent director
+    agent temperatureControl
 }
