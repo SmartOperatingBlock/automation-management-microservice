@@ -13,7 +13,25 @@ package application.presenter.event.model.medicaltechnology;
  */
 public enum MedicalTechnologyTypePayload {
     /** Endoscope. */
-    ENDOSCOPE,
+    ENDOSCOPE("endoscope"),
     /** X-Ray. */
-    XRAY
+    XRAY("xray");
+
+    private final String name;
+
+    /**
+     * Default constructor.
+     * @param name the name
+     */
+    MedicalTechnologyTypePayload(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * Obtain the name of the type.
+     * @return the name
+     */
+    public String getName() {
+        return this.name;
+    }
 }

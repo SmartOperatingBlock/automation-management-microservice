@@ -13,7 +13,25 @@ package application.presenter.event.model.roomevent;
  */
 public enum RoomTypePayload {
     /** Operating room. */
-    OPERATING_ROOM,
+    OPERATING_ROOM("operatingRoom"),
     /** Pre operating room. */
-    PRE_OPERATING_ROOM
+    PRE_OPERATING_ROOM("preOperatingRoom");
+
+    private final String name;
+
+    /**
+     * Default constructor.
+     * @param name the name
+     */
+    RoomTypePayload(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * Obtain the name of the type.
+     * @return the name
+     */
+    public String getName() {
+        return this.name;
+    }
 }
