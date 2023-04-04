@@ -37,14 +37,18 @@ public class DigitalTwinManager implements MedicalTechnologyRepository {
 
     private final DigitalTwinsClient dtClient;
 
-    /**
-     * Default constructor.
-     */
-    public DigitalTwinManager() {
+    static {
+        // Checks on existence of environmental variable
         Objects.requireNonNull(System.getenv(DT_APP_ID_VARIABLE), "Azure client app id required");
         Objects.requireNonNull(System.getenv(DT_TENANT_VARIABLE), "Azure tenant id required");
         Objects.requireNonNull(System.getenv(DT_APP_SECRET_VARIABLE), "Azure client secret id required");
         Objects.requireNonNull(System.getenv(DT_ENDPOINT_VARIABLE), "Azure dt endpoint required");
+    }
+
+    /**
+     * Default constructor.
+     */
+    public DigitalTwinManager() {
         this.dtClient = new DigitalTwinsClientBuilder()
                 .credential(new DefaultAzureCredentialBuilder().build())
                 .endpoint(System.getenv(DT_ENDPOINT_VARIABLE))
