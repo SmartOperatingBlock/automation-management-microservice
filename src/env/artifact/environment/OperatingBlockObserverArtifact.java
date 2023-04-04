@@ -98,8 +98,8 @@ public class OperatingBlockObserverArtifact extends Artifact {
                                             room.getId())));
                 }
                 default -> {
+                    // not handled
                 }
-                // not handled
             }
         });
     }
