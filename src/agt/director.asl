@@ -18,9 +18,24 @@
        focus(ConfigurationId);
        load.
 
-+config(X)
-    <- println(X).
-    // todo: inform agents
++operatingRoom(T, H, AL, SL)
+    <- .send(temperatureControl, tell, optimalTemperature(operatingRoom, T));
+       .send(humidityControl, tell, optimalHumidity(operatingRoom, H));
+       .send(luminosityControl, tell, optimalIlluminance(operatingRoom, AL, SL)).
+
++preOperatingRoom(T, H, AL)
+    <- .send(temperatureControl, tell, optimalTemperature(preOperatingRoom, T));
+       .send(humidityControl, tell, optimalHumidity(preOperatingRoom, H));
+       .send(luminosityControl, tell, optimalIlluminance(preOperatingRoom, AL)).
+
++operatingRoomStandby(M, T, H, AL, SL)
+    <- .println(M). // todo
+
++prePostOperatingRoomStandby(M, T, H, AL)
+    <- .println(M). // todo
+
++medicalTechnologyScenario(MT, AL, SL)
+    <- .send(medicalTechnologySupporter, tell, scenario(MT, AL, SL)).
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
