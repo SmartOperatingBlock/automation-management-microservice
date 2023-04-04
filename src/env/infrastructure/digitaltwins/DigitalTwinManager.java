@@ -62,10 +62,10 @@ public class DigitalTwinManager implements MedicalTechnologyRepository {
                 return new MedicalTechnology(medicalTechnology.getId(),
                         medicalTechnology.getType(),
                         client.query("SELECT TOP(1) CT.$dtId"
-                                        + "FROM DIGITALTWINS T"
-                                        + "JOIN CT RELATED T."
+                                        + " FROM DIGITALTWINS T"
+                                        + " JOIN CT RELATED T."
                                         + MedicalTechnologyAdtPresentation.IS_LOCATED_IN_OPERATING_ROOM_RELATIONSHIP
-                                        + "WHERE T.$dtId = '"
+                                        + " WHERE T.$dtId = '"
                                         + medicalTechnologyID.getId()
                                         + "'",
                                         String.class).stream()
