@@ -9,6 +9,7 @@
 package artifact.environment;
 
 import application.controller.manager.EventManager;
+import application.presenter.event.model.medicaltechnology.MedicalTechnologyEvent;
 import application.presenter.event.model.medicaltechnology.payload.MedicalTechnologyUsagePayload;
 import application.presenter.event.model.roomevent.RoomEvent;
 import application.presenter.event.model.roomevent.payload.HumidityPayload;
@@ -18,6 +19,8 @@ import application.presenter.event.model.roomevent.payload.TemperaturePayload;
 import cartago.Artifact;
 import cartago.INTERNAL_OPERATION;
 import cartago.OPERATION;
+import entity.medicaltechnology.MedicalTechnologyID;
+import infrastructure.digitaltwins.DigitalTwinManager;
 import infrastructure.events.KafkaClient;
 
 /**
@@ -52,47 +55,51 @@ public class OperatingBlockObserverArtifact extends Artifact {
     void poll() {
         this.eventManager.poll(event -> {
             switch (event.getKey()) {
-                case TemperaturePayload.TEMPERATURE_EVENT_KEY:
+                case TemperaturePayload.TEMPERATURE_EVENT_KEY -> {
                     final RoomEvent<?> roomTempEvent = (RoomEvent<?>) event;
                     final TemperaturePayload temperaturePayload = (TemperaturePayload) roomTempEvent.getData();
                     signal("temperature",
                             roomTempEvent.getRoomId(),
                             roomTempEvent.getRoomType().getName(),
                             temperaturePayload.getTemperatureValue());
-                    break;
-                case HumidityPayload.HUMIDITY_EVENT_KEY:
+                }
+                case HumidityPayload.HUMIDITY_EVENT_KEY -> {
                     final RoomEvent<?> roomHumidityEvent = (RoomEvent<?>) event;
                     final HumidityPayload humidityPayload = (HumidityPayload) roomHumidityEvent.getData();
                     signal("humidity",
                             roomHumidityEvent.getRoomId(),
                             roomHumidityEvent.getRoomType().getName(),
                             humidityPayload.getHumidityPercentage());
-                    break;
-                case LuminosityPayload.LUMINOSITY_EVENT_KEY:
+                }
+                case LuminosityPayload.LUMINOSITY_EVENT_KEY -> {
                     final RoomEvent<?> roomLuminosityEvent = (RoomEvent<?>) event;
                     final LuminosityPayload luminosityPayload = (LuminosityPayload) roomLuminosityEvent.getData();
                     signal("luminosity",
                             roomLuminosityEvent.getRoomId(),
                             roomLuminosityEvent.getRoomType().getName(),
                             luminosityPayload.getLuminosityValue());
-                    break;
-                case PresencePayload.PRESENCE_EVENT_KEY:
+                }
+                case PresencePayload.PRESENCE_EVENT_KEY -> {
                     final RoomEvent<?> roomPresenceEvent = (RoomEvent<?>) event;
                     final PresencePayload presencePayload = (PresencePayload) roomPresenceEvent.getData();
                     signal("presence",
                             roomPresenceEvent.getRoomId(),
                             roomPresenceEvent.getRoomType().getName(),
                             presencePayload.isPresenceDetected());
-                    break;
-                case MedicalTechnologyUsagePayload.MEDICAL_TECHNOLOGY_USAGE_EVENT_KEY:
-                    // final MedicalTechnologyEvent medicalTechnologyUsageEvent = (MedicalTechnologyEvent) event;
-                    // todo: understand in which room the medical technology is
-                    // todo: understand the type of the medical technology (maybe can be fused with the previous query)
-                    // todo: signal
-                    break;
-                default:
-                    // not handled
-                    break;
+                }
+                case MedicalTechnologyUsagePayload.MEDICAL_TECHNOLOGY_USAGE_EVENT_KEY -> {
+                    final MedicalTechnologyEvent medicalTechnologyUsageEvent = (MedicalTechnologyEvent) event;
+                    new DigitalTwinManager()
+                            .findBy(new MedicalTechnologyID(medicalTechnologyUsageEvent.getData().getMedicalTechnologyID()))
+                            .ifPresent(medicalTechnology -> medicalTechnology.getRoomID().ifPresent(room ->
+                                    signal("medicalTechnologyUsage",
+                                            medicalTechnology.getType().getName(),
+                                            medicalTechnologyUsageEvent.getData().isInUse(),
+                                            room.getId())));
+                }
+                default -> {
+                }
+                // not handled
             }
         });
     }
