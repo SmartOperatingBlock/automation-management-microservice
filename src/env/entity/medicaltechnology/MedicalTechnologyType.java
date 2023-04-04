@@ -13,7 +13,25 @@ package entity.medicaltechnology;
  */
 public enum MedicalTechnologyType {
     /** Endoscope technology. */
-    ENDOSCOPE,
+    ENDOSCOPE("endoscope"),
     /** X-ray technology. */
-    XRAY
+    XRAY("xray");
+
+    private final String name;
+
+    /**
+     * Default constructor.
+     * @param name the name of the medical technology type.
+     */
+    MedicalTechnologyType(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get the display name.
+     * @return the name
+     */
+    public String getName() {
+        return this.name;
+    }
 }
