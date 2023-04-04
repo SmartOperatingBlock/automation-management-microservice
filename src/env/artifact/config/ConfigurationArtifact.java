@@ -10,7 +10,7 @@ package artifact.config;
 
 import cartago.Artifact;
 import cartago.OPERATION;
-import infrastructure.configuration.model.Configuration;
+import application.presenter.configuration.model.Configuration;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import org.yaml.snakeyaml.representer.Representer;
@@ -48,7 +48,46 @@ public class ConfigurationArtifact extends Artifact {
         ) {
             final String fileContent = new String(configInputStream.readAllBytes(), StandardCharsets.UTF_8);
             final Configuration config = yaml.load(fileContent);
-            signal("config", config.getOperatingRoomStandbyMode().isEnabled().toString()); // tobe deleted
+            // Signal the configuration to the observers
+            // Operating room environment configuration
+            signal("operatingRoom",
+                    config.getOperatingRoom().getTemperature(),
+                    config.getOperatingRoom().getHumidity(),
+                    config.getOperatingRoom().getAmbientIlluminance(),
+                    config.getOperatingRoom().getSurgicalIlluminance());
+
+            // Pre post operating room environment configuration
+            signal("preOperatingRoom",
+                    config.getPrePostOperatingRoom().getTemperature(),
+                    config.getPrePostOperatingRoom().getHumidity(),
+                    config.getPrePostOperatingRoom().getAmbientIlluminance());
+
+            // Operating room standby mode
+            if (config.getOperatingRoomStandbyMode().isEnabled()) {
+                signal("operatingRoomStandby",
+                        config.getOperatingRoomStandbyMode().getMinutesToEnable(),
+                        config.getOperatingRoomStandbyMode().getEnvironment().getTemperature(),
+                        config.getOperatingRoomStandbyMode().getEnvironment().getHumidity(),
+                        config.getOperatingRoomStandbyMode().getEnvironment().getAmbientIlluminance(),
+                        config.getOperatingRoomStandbyMode().getEnvironment().getSurgicalIlluminance());
+            }
+
+            // Pre post operating room standby mode
+            if (config.getPrePostOperatingRoomStandbyMode().isEnabled()) {
+                signal("prePostOperatingRoomStandby",
+                        config.getPrePostOperatingRoomStandbyMode().getMinutesToEnable(),
+                        config.getPrePostOperatingRoomStandbyMode().getEnvironment().getTemperature(),
+                        config.getPrePostOperatingRoomStandbyMode().getEnvironment().getHumidity(),
+                        config.getPrePostOperatingRoomStandbyMode().getEnvironment().getAmbientIlluminance());
+            }
+
+            // Medical technologies scenarios
+            config.getMedicalTechnologyScenarios().forEach(scenario -> {
+                signal("medicalTechnologyScenario",
+                        scenario.getMedicalTechnologyType(),
+                        scenario.getAmbientIlluminance(),
+                        scenario.getSurgicalIlluminance());
+            });
         } catch (IOException e) {
             throw new IllegalStateException("Impossible to read configuration file", e);
         }
