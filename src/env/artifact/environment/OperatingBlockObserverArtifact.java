@@ -57,7 +57,7 @@ public class OperatingBlockObserverArtifact extends Artifact {
                     final TemperaturePayload temperaturePayload = (TemperaturePayload) roomTempEvent.getData();
                     signal("temperature",
                             roomTempEvent.getRoomId(),
-                            roomTempEvent.getRoomType().toString(),
+                            roomTempEvent.getRoomType().getName(),
                             temperaturePayload.getTemperatureValue());
                     break;
                 case HumidityPayload.HUMIDITY_EVENT_KEY:
@@ -65,7 +65,7 @@ public class OperatingBlockObserverArtifact extends Artifact {
                     final HumidityPayload humidityPayload = (HumidityPayload) roomHumidityEvent.getData();
                     signal("humidity",
                             roomHumidityEvent.getRoomId(),
-                            roomHumidityEvent.getRoomType().toString(),
+                            roomHumidityEvent.getRoomType().getName(),
                             humidityPayload.getHumidityPercentage());
                     break;
                 case LuminosityPayload.LUMINOSITY_EVENT_KEY:
@@ -73,7 +73,7 @@ public class OperatingBlockObserverArtifact extends Artifact {
                     final LuminosityPayload luminosityPayload = (LuminosityPayload) roomLuminosityEvent.getData();
                     signal("luminosity",
                             roomLuminosityEvent.getRoomId(),
-                            roomLuminosityEvent.getRoomType().toString(),
+                            roomLuminosityEvent.getRoomType().getName(),
                             luminosityPayload.getLuminosityValue());
                     break;
                 case PresencePayload.PRESENCE_EVENT_KEY:
@@ -81,7 +81,7 @@ public class OperatingBlockObserverArtifact extends Artifact {
                     final PresencePayload presencePayload = (PresencePayload) roomPresenceEvent.getData();
                     signal("presence",
                             roomPresenceEvent.getRoomId(),
-                            roomPresenceEvent.getRoomType().toString(),
+                            roomPresenceEvent.getRoomType().getName(),
                             presencePayload.isPresenceDetected());
                     break;
                 case MedicalTechnologyUsagePayload.MEDICAL_TECHNOLOGY_USAGE_EVENT_KEY:
