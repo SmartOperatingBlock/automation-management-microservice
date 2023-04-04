@@ -29,6 +29,8 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.azure.digital.twins)
+    implementation(libs.azure.identity)
     implementation(libs.gson)
     implementation(libs.jacamo)
     implementation(libs.kafka.clients)
