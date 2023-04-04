@@ -18,14 +18,72 @@
        start [aid(OperatingBlockObserverId)];
        focus(OperatingBlockObserverId).
 
++temperature(RoomId, RoomType, Value)
+            : optimalTemperature(RoomType, OptimalValue) &
+              TollerancedOptimalValue = OptimalValue + 0.5 &
+              Value > TollerancedOptimalValue
+    <- .println(cooling);
+       !turnOffHeating(RoomId);
+       !turnOnCooling(RoomId).
+
++temperature(RoomId, RoomType, Value) 
+            : optimalTemperature(RoomType, OptimalValue) &
+              TollerancedOptimalValue = OptimalValue - 0.5 & 
+              Value < TollerancedOptimalValue
+    <- .println(heating);
+       !turnOffCooling(RoomId);
+       !turnOnHeating(RoomId).
+
++temperature(RoomId, RoomType, Value) : optimalTemperature(RoomType, OptimalValue) & Value == OptimalValue
+    <- .println(off);
+       !turnOffCooling(RoomId);
+       !turnOffHeating(RoomId).
+
+// Cooling goal
++!turnOnCooling(RoomId) : not cooling(RoomId)
+    <- .concat(RoomId, "-cooler", ResultString);
+       makeArtifact(ResultString, "artifact.environment.Cooler", [RoomId], CoolerId);
+       turnOn [aid(CoolerId)];
+       +cooling(RoomId); // add mental note to not re-turn on
+       disposeArtifact(CoolerId).
+-!turnOnCooling(RoomId) 
+    <- true.
+
++!turnOffCooling(RoomId) : cooling(RoomId)
+    <- .concat(RoomId, "-cooler", ResultString);
+       makeArtifact(ResultString, "artifact.environment.Cooler", [RoomId], CoolerId);
+       turnOff [aid(CoolerId)];
+       -cooling(RoomId); // remove mental note to not re-turn off
+       disposeArtifact(CoolerId).
+-!turnOffCooling(RoomId) 
+    <- true.
+
+// Heating goal
++!turnOnHeating(RoomId) : not heating(RoomId)
+    <- .concat(RoomId, "-heater", ResultString);
+       makeArtifact(ResultString, "artifact.environment.Heater", [RoomId], HeaterId);
+       turnOn [aid(HeaterId)];
+       +heating(RoomId); // add mental note to not re-turn on
+       disposeArtifact(HeaterId).
+-!turnOnHeating(RoomId) 
+    <- true.
+
++!turnOffHeating(RoomId) : heating(RoomId)
+    <- .concat(RoomId, "-heater", ResultString);
+       makeArtifact(ResultString, "artifact.environment.Heater", [RoomId], HeaterId);
+       turnOff [aid(HeaterId)];
+       -heating(RoomId); // remove mental note to not re-turn off
+       disposeArtifact(HeaterId).
+-!turnOffHeating(RoomId) 
+    <- true.
+
 // Obtain the operating block observer
 +?obtainObserver(OperatingBlockObserverId)
     <- lookupArtifact("operating_block_observer", OperatingBlockObserverId).
 
-// If the operating block observer artifact is not found in the workspace, then create it
 -?obtainObserver(OperatingBlockObserverId)
-    <- makeArtifact("operating_block_observer", "artifact.environment.OperatingBlockObserverArtifact", [], OperatingBlockObserverId).
-
+    <- .wait(100);
+       ?obtainObserver(OperatingBlockObserverId).
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
