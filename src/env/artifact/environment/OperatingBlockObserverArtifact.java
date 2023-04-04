@@ -94,7 +94,6 @@ public class OperatingBlockObserverArtifact extends Artifact {
                     // not handled
                     break;
             }
-            signal("event", event.getKey()); // tobe deleted
         });
     }
 }
