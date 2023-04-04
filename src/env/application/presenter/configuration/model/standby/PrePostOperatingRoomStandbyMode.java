@@ -6,9 +6,9 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package infrastructure.configuration.model.standby;
+package application.presenter.configuration.model.standby;
 
-import infrastructure.configuration.model.environment.EnvironmentalDataConfig;
+import application.presenter.configuration.model.environment.EnvironmentalDataConfig;
 
 /**
  * Standby configuration for pre/post operating room.

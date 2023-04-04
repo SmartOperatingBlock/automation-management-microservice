@@ -6,7 +6,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package infrastructure.configuration.model.standby;
+package application.presenter.configuration.model.standby;
 
 /**
  * Class that models the standby mode in the configuration.

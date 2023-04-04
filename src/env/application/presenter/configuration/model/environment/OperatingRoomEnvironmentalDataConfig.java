@@ -6,7 +6,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package infrastructure.configuration.model.environment;
+package application.presenter.configuration.model.environment;
 
 /**
  * Class that model the environmental data of an operating room.

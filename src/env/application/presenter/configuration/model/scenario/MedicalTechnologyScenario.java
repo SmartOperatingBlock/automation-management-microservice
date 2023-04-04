@@ -6,7 +6,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package infrastructure.configuration.model.scenario;
+package application.presenter.configuration.model.scenario;
 
 /**
  * Class that models a medical technology scenario config.

@@ -6,7 +6,7 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package infrastructure.configuration.model.environment;
+package application.presenter.configuration.model.environment;
 
 /**
  * Class that models the data provided in the configuration.

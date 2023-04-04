@@ -6,13 +6,13 @@
  * https://opensource.org/licenses/MIT.
  */
 
-package infrastructure.configuration.model;
+package application.presenter.configuration.model;
 
-import infrastructure.configuration.model.environment.EnvironmentalDataConfig;
-import infrastructure.configuration.model.environment.OperatingRoomEnvironmentalDataConfig;
-import infrastructure.configuration.model.scenario.MedicalTechnologyScenario;
-import infrastructure.configuration.model.standby.OperatingRoomStandbyMode;
-import infrastructure.configuration.model.standby.PrePostOperatingRoomStandbyMode;
+import application.presenter.configuration.model.environment.EnvironmentalDataConfig;
+import application.presenter.configuration.model.environment.OperatingRoomEnvironmentalDataConfig;
+import application.presenter.configuration.model.scenario.MedicalTechnologyScenario;
+import application.presenter.configuration.model.standby.OperatingRoomStandbyMode;
+import application.presenter.configuration.model.standby.PrePostOperatingRoomStandbyMode;
 
 import java.util.ArrayList;
 import java.util.List;
