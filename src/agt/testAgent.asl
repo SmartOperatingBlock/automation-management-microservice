@@ -19,7 +19,8 @@
     <- lookupArtifact("operating_block_observer", OperatingBlockObserverId).
 
 -?obtainObserver(OperatingBlockObserverId)
-    <- makeArtifact("operating_block_observer", "artifact.environment.OperatingBlockObserverArtifact", [], OperatingBlockObserverId).
+    <- .wait(100);
+       ?obtainObserver(OperatingBlockObserverId).
        
 
 { include("$jacamoJar/templates/common-cartago.asl") }
