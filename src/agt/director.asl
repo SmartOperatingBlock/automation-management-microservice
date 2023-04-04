@@ -19,14 +19,14 @@
        load.
 
 +operatingRoom(T, H, AL, SL)
-    <- .send(temperatureControl, tell, optimalTemperature(operatingRoom, T));
-       .send(humidityControl, tell, optimalHumidity(operatingRoom, H));
-       .send(luminosityControl, tell, optimalIlluminance(operatingRoom, AL, SL)).
+    <- .send(temperatureControl, tell, optimalTemperature("operatingRoom", T));
+       .send(humidityControl, tell, optimalHumidity("operatingRoom", H));
+       .send(luminosityControl, tell, optimalIlluminance("operatingRoom", AL, SL)).
 
 +preOperatingRoom(T, H, AL)
-    <- .send(temperatureControl, tell, optimalTemperature(preOperatingRoom, T));
-       .send(humidityControl, tell, optimalHumidity(preOperatingRoom, H));
-       .send(luminosityControl, tell, optimalIlluminance(preOperatingRoom, AL)).
+    <- .send(temperatureControl, tell, optimalTemperature("preOperatingRoom", T));
+       .send(humidityControl, tell, optimalHumidity("preOperatingRoom", H));
+       .send(luminosityControl, tell, optimalIlluminance("preOperatingRoom", AL)).
 
 +operatingRoomStandby(M, T, H, AL, SL)
     <- .println(M). // todo
