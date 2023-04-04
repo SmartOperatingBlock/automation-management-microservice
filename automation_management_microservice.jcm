@@ -9,4 +9,8 @@
 mas automation_management_microservice {
     agent director
     agent temperatureControl
+    agent humidityControl
+    agent luminosityControl
+    agent medicalTechnologySupporter
+    agent powerSaver
 }
