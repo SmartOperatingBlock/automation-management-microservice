@@ -19,12 +19,12 @@ import entity.medicaltechnology.MedicalTechnology;
 import entity.medicaltechnology.MedicalTechnologyID;
 import entity.room.RoomID;
 import infrastructure.digitaltwins.adtpresentation.MedicalTechnologyAdtPresentation;
-import jade.util.Logger;
 import usecase.repository.MedicalTechnologyRepository;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.logging.Logger;
 
 /**
  * Digital Twin Manager that implements the repositories of the application.
@@ -86,7 +86,7 @@ public class DigitalTwinManager implements MedicalTechnologyRepository {
         try {
             return operation.apply(this.dtClient);
         } catch (final ErrorResponseException exception) {
-            Logger.getLogger(DigitalTwinManager.class.toString()).fine(exception.getMessage());
+            Logger.getLogger(DigitalTwinManager.class.toString()).info(exception.getMessage());
             return defaultResult;
         }
     }
