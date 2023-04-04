@@ -11,8 +11,6 @@
  * in order to maintain it within the values of the user configuration.
  */
 
-// todo: react to configuration changes
-
 !observeOperatingBlock.
 
 +!observeOperatingBlock
