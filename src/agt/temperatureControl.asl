@@ -42,7 +42,7 @@
 // Cooling goal
 +!turnOnCooling(RoomId) : not cooling(RoomId)
     <- .concat(RoomId, "-cooler", ResultString);
-       makeArtifact(ResultString, "artifact.environment.Cooler", [RoomId], CoolerId);
+       makeArtifact(ResultString, "artifact.environment.roomartifact.Cooler", [RoomId], CoolerId);
        turnOn [aid(CoolerId)];
        +cooling(RoomId); // add mental note to not re-turn on
        disposeArtifact(CoolerId).
@@ -51,7 +51,7 @@
 
 +!turnOffCooling(RoomId) : cooling(RoomId)
     <- .concat(RoomId, "-cooler", ResultString);
-       makeArtifact(ResultString, "artifact.environment.Cooler", [RoomId], CoolerId);
+       makeArtifact(ResultString, "artifact.environment.roomartifact.Cooler", [RoomId], CoolerId);
        turnOff [aid(CoolerId)];
        -cooling(RoomId); // remove mental note to not re-turn off
        disposeArtifact(CoolerId).
@@ -61,7 +61,7 @@
 // Heating goal
 +!turnOnHeating(RoomId) : not heating(RoomId)
     <- .concat(RoomId, "-heater", ResultString);
-       makeArtifact(ResultString, "artifact.environment.Heater", [RoomId], HeaterId);
+       makeArtifact(ResultString, "artifact.environment.roomartifact.Heater", [RoomId], HeaterId);
        turnOn [aid(HeaterId)];
        +heating(RoomId); // add mental note to not re-turn on
        disposeArtifact(HeaterId).
@@ -70,7 +70,7 @@
 
 +!turnOffHeating(RoomId) : heating(RoomId)
     <- .concat(RoomId, "-heater", ResultString);
-       makeArtifact(ResultString, "artifact.environment.Heater", [RoomId], HeaterId);
+       makeArtifact(ResultString, "artifact.environment.roomartifact.Heater", [RoomId], HeaterId);
        turnOff [aid(HeaterId)];
        -heating(RoomId); // remove mental note to not re-turn off
        disposeArtifact(HeaterId).
