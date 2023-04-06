@@ -18,6 +18,7 @@
        start [aid(OperatingBlockObserverId)];
        focus(OperatingBlockObserverId).
 
+@cooling [atomic]
 +temperature(RoomId, RoomType, Value)
             : optimalTemperature(RoomType, OptimalValue) &
               TollerancedOptimalValue = OptimalValue + 0.5 &
@@ -26,6 +27,7 @@
        !turnOffHeating(RoomId);
        !turnOnCooling(RoomId).
 
+@heating [atomic]
 +temperature(RoomId, RoomType, Value) 
             : optimalTemperature(RoomType, OptimalValue) &
               TollerancedOptimalValue = OptimalValue - 0.5 & 
@@ -34,6 +36,7 @@
        !turnOffCooling(RoomId);
        !turnOnHeating(RoomId).
 
+@off_temperature [atomic]
 +temperature(RoomId, RoomType, Value) : optimalTemperature(RoomType, OptimalValue) & Value == OptimalValue
     <- .println(off);
        !turnOffCooling(RoomId);
