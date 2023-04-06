@@ -15,7 +15,6 @@
 
 +!observeOperatingBlock
     <- ?obtainObserver(OperatingBlockObserverId);
-       start [aid(OperatingBlockObserverId)];
        focus(OperatingBlockObserverId).
 
 @cooling [atomic]
@@ -38,7 +37,7 @@
 
 @off_temperature [atomic]
 +temperature(RoomId, RoomType, Value) : optimalTemperature(RoomType, OptimalValue) & Value == OptimalValue
-    <- .println(off);
+    <- .println(off_temperature);
        !turnOffCooling(RoomId);
        !turnOffHeating(RoomId).
 

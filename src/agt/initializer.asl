@@ -13,4 +13,5 @@
 !createOperatingBlockObserver.
 
 +!createOperatingBlockObserver
-    <- makeArtifact("operating_block_observer", "artifact.environment.OperatingBlockObserverArtifact", [], OperatingBlockObserverId).
+    <- makeArtifact("operating_block_observer", "artifact.environment.OperatingBlockObserverArtifact", [], OperatingBlockObserverId);
+       start [aid(OperatingBlockObserverId)].
