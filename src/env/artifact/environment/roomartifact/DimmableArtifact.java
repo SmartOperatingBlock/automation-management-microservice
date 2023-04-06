@@ -14,7 +14,7 @@ package artifact.environment.roomartifact;
 public interface DimmableArtifact {
     /**
      * Set the intensity of the artifact.
-     * @param intensityPercentage the intensity as a percentage.
+     * @param intensity the intensity.
      */
-    void setIntensity(int intensityPercentage);
+    void setIntensity(int intensity);
 }
