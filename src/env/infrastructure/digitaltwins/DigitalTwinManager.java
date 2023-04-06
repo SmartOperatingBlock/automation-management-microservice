@@ -15,10 +15,14 @@ import com.azure.digitaltwins.core.implementation.models.ErrorResponseException;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import entity.actuator.ActuatorID;
+import entity.actuator.ActuatorType;
 import entity.medicaltechnology.MedicalTechnology;
 import entity.medicaltechnology.MedicalTechnologyID;
 import entity.room.RoomID;
+import infrastructure.digitaltwins.adtpresentation.ActuatorAdtPresentation;
 import infrastructure.digitaltwins.adtpresentation.MedicalTechnologyAdtPresentation;
+import usecase.repository.ActuatorRepository;
 import usecase.repository.MedicalTechnologyRepository;
 
 import java.util.Objects;
@@ -29,7 +33,7 @@ import java.util.logging.Logger;
 /**
  * Digital Twin Manager that implements the repositories of the application.
  */
-public class DigitalTwinManager implements MedicalTechnologyRepository {
+public class DigitalTwinManager implements MedicalTechnologyRepository, ActuatorRepository {
     private static final String DT_APP_ID_VARIABLE = "AZURE_CLIENT_ID";
     private static final String DT_TENANT_VARIABLE = "AZURE_TENANT_ID";
     private static final String DT_APP_SECRET_VARIABLE = "AZURE_CLIENT_SECRET";
@@ -80,6 +84,25 @@ public class DigitalTwinManager implements MedicalTechnologyRepository {
                 );
             });
         });
+    }
+
+    @Override
+    public final Optional<ActuatorID> findActuatorInRoom(final ActuatorType actuatorType, final RoomID roomID) {
+        return this.applySafeDigitalTwinOperation(Optional.empty(), client ->
+                client.query("SELECT TOP(1) CT.$dtId"
+                            + " FROM DIGITALTWINS T "
+                            + "JOIN CT RELATED T."
+                            + ActuatorAdtPresentation.HAS_ACTUATOR_RELATIONSHIP
+                            + " WHERE T.$dtId = '"
+                            + roomID.getId()
+                            + "' AND CT.type = '"
+                            + ActuatorAdtPresentation.toActuatorDigitalTwinType(actuatorType)
+                            + "'",
+                            String.class).stream()
+                .findFirst()
+                .map(firstResult ->
+                        new ActuatorID(new Gson().fromJson(firstResult, JsonObject.class).get("$dtId").getAsString())
+                ));
     }
 
     private <R> R applySafeDigitalTwinOperation(final R defaultResult, final Function<DigitalTwinsClient, R> operation) {
