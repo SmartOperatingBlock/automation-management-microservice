@@ -29,10 +29,12 @@
        .send(luminosityControl, tell, optimalIlluminance("preOperatingRoom", AL)).
 
 +operatingRoomStandby(M, T, H, AL, SL)
-    <- .println(M). // todo
+    <- .send(powerSaver, tell, minutesToStandby("operatingRoom", M));
+       .send(powerSaver, tell, standbyEnvironmentConfig("operatingRoom", T, H, AL, SL)).
 
 +prePostOperatingRoomStandby(M, T, H, AL)
-    <- .println(M). // todo
+    <- .send(powerSaver, tell, minutesToStandby("preOperatingRoom", M));
+       .send(powerSaver, tell, standbyEnvironmentConfig("preOperatingRoom", T, H, AL)).
 
 +medicalTechnologyScenario(MT, AL, SL)
     <- .send(medicalTechnologySupporter, tell, scenario(MT, AL, SL)).
