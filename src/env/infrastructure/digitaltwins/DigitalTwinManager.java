@@ -22,6 +22,7 @@ import entity.medicaltechnology.MedicalTechnologyID;
 import entity.room.RoomID;
 import infrastructure.digitaltwins.adtpresentation.ActuatorAdtPresentation;
 import infrastructure.digitaltwins.adtpresentation.MedicalTechnologyAdtPresentation;
+import infrastructure.digitaltwins.query.AdtQuery;
 import usecase.repository.ActuatorRepository;
 import usecase.repository.MedicalTechnologyRepository;
 
@@ -69,13 +70,14 @@ public class DigitalTwinManager implements MedicalTechnologyRepository, Actuator
                 // Get the room if exists
                 return new MedicalTechnology(medicalTechnology.getId(),
                         medicalTechnology.getType(),
-                        client.query("SELECT TOP(1) CT.$dtId"
-                                        + " FROM DIGITALTWINS T"
-                                        + " JOIN CT RELATED T."
-                                        + MedicalTechnologyAdtPresentation.IS_LOCATED_IN_OPERATING_ROOM_RELATIONSHIP
-                                        + " WHERE T.$dtId = '"
-                                        + medicalTechnologyID.getId()
-                                        + "'",
+                        client.query(new AdtQuery().selectTop(1, "CT.$dtId")
+                                                .fromDigitalTwins("T")
+                                                .joinRelationship(
+                                                        "CT",
+                                                        "T",
+                                                        MedicalTechnologyAdtPresentation.IS_LOCATED_IN_OPERATING_ROOM_RELATIONSHIP
+                                                ).where("T.$dtId = '" + medicalTechnologyID.getId() + "'")
+                                                .toQuery(),
                                         String.class).stream()
                                 .findFirst()
                                 .map(firstResult ->
@@ -89,15 +91,17 @@ public class DigitalTwinManager implements MedicalTechnologyRepository, Actuator
     @Override
     public final Optional<ActuatorID> findActuatorInRoom(final ActuatorType actuatorType, final RoomID roomID) {
         return this.applySafeDigitalTwinOperation(Optional.empty(), client ->
-                client.query("SELECT TOP(1) CT.$dtId"
-                            + " FROM DIGITALTWINS T "
-                            + "JOIN CT RELATED T."
-                            + ActuatorAdtPresentation.HAS_ACTUATOR_RELATIONSHIP
-                            + " WHERE T.$dtId = '"
-                            + roomID.getId()
-                            + "' AND CT.type = '"
-                            + ActuatorAdtPresentation.toActuatorDigitalTwinType(actuatorType)
-                            + "'",
+                client.query(new AdtQuery().selectTop(1, "CT.$dtId")
+                                        .fromDigitalTwins("T")
+                                        .joinRelationship(
+                                                "CT",
+                                                "T",
+                                                ActuatorAdtPresentation.HAS_ACTUATOR_RELATIONSHIP
+                                        ).where("T.$dtId = '" + roomID.getId() + "'")
+                                        .and("CT.type = '"
+                                                + ActuatorAdtPresentation.toActuatorDigitalTwinType(actuatorType)
+                                                + "'"
+                                        ).toQuery(),
                             String.class).stream()
                 .findFirst()
                 .map(firstResult ->
