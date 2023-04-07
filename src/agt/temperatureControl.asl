@@ -11,37 +11,50 @@
  * in order to maintain it within the values of the user configuration.
  */
 
+tollerance(0.5).
+
 !observeOperatingBlock.
 
 +!observeOperatingBlock
     <- ?obtainObserver(OperatingBlockObserverId);
        focus(OperatingBlockObserverId).
 
-@cooling [atomic]
+// Get the temperature updates
+@temperature [atomic]
 +temperature(RoomId, RoomType, Value)
-            : optimalTemperature(RoomType, OptimalValue) &
-              TollerancedOptimalValue = OptimalValue + 0.5 &
-              Value > TollerancedOptimalValue
+    <- !adjustTemperature(RoomId, RoomType, Value).
+
+// Check if there is a specific value of temperature for that room id and then achieve the optimal temperature
++!adjustTemperature(RoomId, RoomType, CurrentValue): specificTemperatureTarget(RoomId, OptimalValue)
+    <- !achieveOptimalTemperature(RoomId, CurrentValue, OptimalValue).
+
+// If there isn't any specific value for the room id then achieve the optimal temperature based on the room type
++!adjustTemperature(RoomId, RoomType, CurrentValue): not specificTemperatureTarget(RoomId, X) & optimalTemperature(RoomType, OptimalValue)
+    <- !achieveOptimalTemperature(RoomId, CurrentValue, OptimalValue).
+
+// Goals to achieve optimal temperature
++!achieveOptimalTemperature(RoomId, CurrentValue, OptimalValue)
+            : tollerance(Tollerance) &
+              TollerancedOptimalValue = OptimalValue + Tollerance &
+              CurrentValue > TollerancedOptimalValue
     <- .println(cooling);
        !turnOffHeating(RoomId);
        !turnOnCooling(RoomId).
 
-@heating [atomic]
-+temperature(RoomId, RoomType, Value) 
-            : optimalTemperature(RoomType, OptimalValue) &
-              TollerancedOptimalValue = OptimalValue - 0.5 & 
-              Value < TollerancedOptimalValue
++!achieveOptimalTemperature(RoomId, CurrentValue, OptimalValue)
+            : tollerance(Tollerance) &
+              TollerancedOptimalValue = OptimalValue - Tollerance & 
+              CurrentValue < TollerancedOptimalValue
     <- .println(heating);
        !turnOffCooling(RoomId);
        !turnOnHeating(RoomId).
 
-@off_temperature [atomic]
-+temperature(RoomId, RoomType, Value) : optimalTemperature(RoomType, OptimalValue) & Value == OptimalValue
++!achieveOptimalTemperature(RoomId, CurrentValue, OptimalValue) : CurrentValue == OptimalValue
     <- .println(off_temperature);
        !turnOffCooling(RoomId);
        !turnOffHeating(RoomId).
 
-// Cooling goal
+// Cooling goals
 +!turnOnCooling(RoomId) : not cooling(RoomId)
     <- .concat(RoomId, "-cooler", ResultString);
        makeArtifact(ResultString, "artifact.environment.roomartifact.Cooler", [RoomId], CoolerId);
@@ -60,7 +73,7 @@
 -!turnOffCooling(RoomId) 
     <- true.
 
-// Heating goal
+// Heating goals
 +!turnOnHeating(RoomId) : not heating(RoomId)
     <- .concat(RoomId, "-heater", ResultString);
        makeArtifact(ResultString, "artifact.environment.roomartifact.Heater", [RoomId], HeaterId);
