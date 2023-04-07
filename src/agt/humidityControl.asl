@@ -11,26 +11,40 @@
  * in order to maintain it within the values of the user configuration.
  */
 
+tollerance(1).
+
 !observeOperatingBlock.
 
 +!observeOperatingBlock
     <- ?obtainObserver(OperatingBlockObserverId);
        focus(OperatingBlockObserverId).
 
-@ventilation [atomic]
+// Get the humidity updates
+@humidity [atomic]
 +humidity(RoomId, RoomType, Value)
-        : optimalHumidity(RoomType, OptimalValue) &
-          TollerancedOptimalValue = OptimalValue + 1 &
-          Value >= TollerancedOptimalValue
+    <- !adjustHumidity(RoomId, RoomType, Value).
+
+// Check if there is a specific value of humidity for that room id and then achieve the optimal humidity
++!adjustHumidity(RoomId, RoomType, CurrentValue): specificHumidityTarget(RoomId, OptimalValue)
+    <- !achieveOptimalHumidity(RoomId, CurrentValue, OptimalValue).
+
+// If there isn't any specific value for the room id then achieve the optimal humidity based on the room type
++!adjustHumidity(RoomId, RoomType, CurrentValue): not specificHumidityTarget(RoomId, X) & optimalHumidity(RoomType, OptimalValue)
+    <- !achieveOptimalHumidity(RoomId, CurrentValue, OptimalValue).
+
+// Goals to achieve optimal humidity
++!achieveOptimalHumidity(RoomId, CurrentValue, OptimalValue)
+        : tollerance(Tollerance) &
+          TollerancedOptimalValue = OptimalValue + Tollerance &
+          CurrentValue >= TollerancedOptimalValue
     <- .println(ventilation);
        !turnOnVentilation(RoomId).
 
-@off_ventilation [atomic]
-+humidity(RoomId, RoomType, Value) : optimalHumidity(RoomType, OptimalValue) & Value <= TollerancedOptimalValue
++!achieveOptimalHumidity(RoomId, CurrentValue, OptimalValue) : CurrentValue <= OptimalValue
     <- .println(off_ventilation);
        !turnOffVentilation(RoomId).
 
-// Ventilation goal
+// Ventilation goals
 +!turnOnVentilation(RoomId) : not ventilation(RoomId)
     <- .concat(RoomId, "-ventilation", ResultString);
        makeArtifact(ResultString, "artifact.environment.roomartifact.Ventilation", [RoomId], VentilationId);
