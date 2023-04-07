@@ -17,20 +17,46 @@
     <- ?obtainObserver(OperatingBlockObserverId);
        focus(OperatingBlockObserverId).
 
+// Get the luminosity updates
+@luminosity [atomic]
++luminosity(RoomId, RoomType, Value)
+    <- ! adjustLuminosity(RoomId, RoomType, Value).
+
+// Check if there is a specific value of luminosity for that room id and then achieve the optimal luminosity
+// Pre/Post Operating Room
++!adjustLuminosity(RoomId, RoomType, CurrentValue): specificIlluminanceTarget(RoomId, OptimalAmbientLight)
+    <- !achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight).
 // Operating Room
-+luminosity(RoomId, RoomType, Value) 
-            : optimalIlluminance(RoomType, OptimalAmbientLight, OptimalSurgicalLight) &
-              Value \== OptimalAmbientLight
++!adjustLuminosity(RoomId, RoomType, CurrentValue): specificIlluminanceTarget(RoomId, OptimalAmbientLight, OptimalSurgicalLight)
+    <- !achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight, OptimalSurgicalLight).
+
+// If there isn't any specific value for the room id then achieve the optimal luminosity based on the room type
+// Pre/Post Operating Room
++!adjustLuminosity(RoomId, RoomType, CurrentValue)
+            : not specificIlluminanceTarget(RoomId, X) & 
+              optimalIlluminance(RoomType, OptimalAmbientLight)
+    <- !achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight).
+// Operating Room
++!adjustLuminosity(RoomId, RoomType, CurrentValue)
+            : not specificIlluminanceTarget(RoomId, X, Y) &
+              optimalIlluminance(RoomType, OptimalAmbientLight, OptimalSurgicalLight)
+    <- !achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight, OptimalSurgicalLight).
+
+// Goals to achieve optimal illuminance
+// Pre/Post Operating Room
++!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight) : CurrentValue \== OptimalAmbientLight
+    <- .println(adjust_luminosity_pre_post_operating_room);
+       !setAmbientLight(RoomId, OptimalAmbientLight).
++!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight) : CurrentValue == OptimalAmbientLight
+    <- true.
+
+// Operating Room
++!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight, OptimalSurgicalLight) : CurrentValue \== OptimalAmbientLight
     <- .println(adjust_luminosity_operating_room);
        !setAmbientLight(RoomId, OptimalAmbientLight);
        !setSurgicalLight(RoomId, OptimalSurgicalLight).
-
-// Pre/Post Operating Room
-+luminosity(RoomId, RoomType, Value) 
-            : optimalIlluminance(RoomType, OptimalAmbientLight) &
-              Value \== OptimalAmbientLight
-    <- .println(adjust_luminosity_pre_post_operating_room);
-       !setAmbientLight(RoomId, OptimalAmbientLight).
++!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight, OptimalSurgicalLight) : CurrentValue == OptimalAmbientLight
+    <- true.
 
 // Ambient light set goal
 +!setAmbientLight(RoomId, Value)
