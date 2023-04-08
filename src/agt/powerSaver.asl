@@ -29,7 +29,8 @@
 +presence(RoomId, RoomType, PresenceDetected) 
             : PresenceDetected == false &
               nticks(CurrentMillisecond) &
-              minutesToStandby(RoomType, MinutesToStandby)
+              minutesToStandby(RoomType, MinutesToStandby) &
+              not no_presence(RoomId, RoomType, X, Y) // Check that it isn't already known
     <- +no_presence(RoomId, RoomType, CurrentMillisecond, MinutesToStandby * 60 * 1000).
 
 @presence [atomic]
