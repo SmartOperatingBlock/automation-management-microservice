@@ -8,8 +8,8 @@ operatingRoomStandbyMode:
   enabled: yes
   minutesToEnable: 1
   environment:
-    temperature: 22.0
-    humidity: 55.0
+    temperature: 20.0
+    humidity: 60.0
     ambientIlluminance: 50
     surgicalIlluminance: 150
 
@@ -23,8 +23,8 @@ prePostOperatingRoomStandbyMode:
   minutesToEnable: 2
   environment:
     temperature: 22.0
-    humidity: 55.0
-    ambientIlluminance: 50
+    humidity: 65.0
+    ambientIlluminance: 60
 
 medicalTechnologyScenarios:
   - medicalTechnologyType: endoscope
