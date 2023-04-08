@@ -12,6 +12,9 @@
  */
 
 !loadConfig.
+!checkPrePostOperatingRoomStandbyProposals.
+!checkOperatingRoomStandbyProposals.
+!checkStandbyEnd.
 
 +!loadConfig
     <- makeArtifact(configuration, "artifact.config.ConfigurationArtifact", [], ConfigurationId);
@@ -38,6 +41,27 @@
 
 +medicalTechnologyScenario(MT, AL, SL)
     <- .send(medicalTechnologySupporter, tell, scenario(MT, AL, SL)).
+
+
+// Check standby proposals for pre/post operating room
++!checkPrePostOperatingRoomStandbyProposals
+    <- in(requestStandby, RoomId, Temperature, Humidity, AmbientLight);
+       .println(requestedPre);
+       .println(RoomId);
+       !!checkPrePostOperatingRoomStandbyProposals.
+
+// Check standby proposals for operating room
++!checkOperatingRoomStandbyProposals
+    <- in(requestStandby, RoomId, Temperature, Humidity, AmbientLight, SurgicalLight);
+       .println(requestedOp);
+       .println(RoomId);
+       !!checkOperatingRoomStandbyProposals.
+
++!checkStandbyEnd
+    <- in(stopStandby, RoomId);
+       .println(stopStandby);
+       .println(RoomId);
+       !!checkStandbyEnd.
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
