@@ -37,7 +37,7 @@ tollerance(0.5).
             : tollerance(Tollerance) &
               TollerancedOptimalValue = OptimalValue + Tollerance &
               CurrentValue > TollerancedOptimalValue
-    <- .println(cooling);
+    <- .println("cooling");
        !turnOffHeating(RoomId);
        !turnOnCooling(RoomId).
 
@@ -45,12 +45,12 @@ tollerance(0.5).
             : tollerance(Tollerance) &
               TollerancedOptimalValue = OptimalValue - Tollerance & 
               CurrentValue < TollerancedOptimalValue
-    <- .println(heating);
+    <- .println("heating");
        !turnOffCooling(RoomId);
        !turnOnHeating(RoomId).
 
 +!achieveOptimalTemperature(RoomId, CurrentValue, OptimalValue) : CurrentValue == OptimalValue
-    <- .println(off_temperature);
+    <- .println("off temperature");
        !turnOffCooling(RoomId);
        !turnOffHeating(RoomId).
 

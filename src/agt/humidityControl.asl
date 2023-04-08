@@ -37,11 +37,11 @@ tollerance(1).
         : tollerance(Tollerance) &
           TollerancedOptimalValue = OptimalValue + Tollerance &
           CurrentValue >= TollerancedOptimalValue
-    <- .println(ventilation);
+    <- .println("ventilation");
        !turnOnVentilation(RoomId).
 
 +!achieveOptimalHumidity(RoomId, CurrentValue, OptimalValue) : CurrentValue <= OptimalValue
-    <- .println(off_ventilation);
+    <- .println("off ventilation");
        !turnOffVentilation(RoomId).
 
 // Ventilation goals

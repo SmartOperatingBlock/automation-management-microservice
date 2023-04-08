@@ -45,14 +45,14 @@
 // Goals to achieve optimal illuminance
 // Pre/Post Operating Room
 +!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight) : CurrentValue \== OptimalAmbientLight
-    <- .println(adjust_luminosity_pre_post_operating_room);
+    <- .println("adjust luminosity pre/post operating room");
        !setAmbientLight(RoomId, OptimalAmbientLight).
 +!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight) : CurrentValue == OptimalAmbientLight
     <- true.
 
 // Operating Room
 +!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight, OptimalSurgicalLight) : CurrentValue \== OptimalAmbientLight
-    <- .println(adjust_luminosity_operating_room);
+    <- .println("adjust luminosity operating room");
        !setAmbientLight(RoomId, OptimalAmbientLight);
        !setSurgicalLight(RoomId, OptimalSurgicalLight).
 +!achieveOptimalIlluminance(RoomId, CurrentValue, OptimalAmbientLight, OptimalSurgicalLight) : CurrentValue == OptimalAmbientLight
