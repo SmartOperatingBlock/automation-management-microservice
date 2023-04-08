@@ -46,21 +46,31 @@
 // Check standby proposals for pre/post operating room
 +!checkPrePostOperatingRoomStandbyProposals
     <- in(requestStandby, RoomId, Temperature, Humidity, AmbientLight);
-       .println(requestedPre);
-       .println(RoomId);
+       .concat("requested standby for pre/post operating room:", RoomId, LogString);
+       .println(LogString);
+       .send(temperatureControl, tell, specificTemperatureTarget(RoomId, Temperature));
+       .send(humidityControl, tell, specificHumidityTarget(RoomId, Humidity));
+       .send(luminosityControl, tell, specificIlluminanceTarget(RoomId, AmbientLight));
        !!checkPrePostOperatingRoomStandbyProposals.
 
 // Check standby proposals for operating room
 +!checkOperatingRoomStandbyProposals
     <- in(requestStandby, RoomId, Temperature, Humidity, AmbientLight, SurgicalLight);
-       .println(requestedOp);
-       .println(RoomId);
+       .concat("requested standby for operating room: ", RoomId, LogString);
+       .println(LogString);
+       .send(temperatureControl, tell, specificTemperatureTarget(RoomId, Temperature));
+       .send(humidityControl, tell, specificHumidityTarget(RoomId, Humidity));
+       .send(luminosityControl, tell, specificIlluminanceTarget(RoomId, AmbientLight, SurgicalLight));
        !!checkOperatingRoomStandbyProposals.
 
 +!checkStandbyEnd
     <- in(stopStandby, RoomId);
-       .println(stopStandby);
-       .println(RoomId);
+       .concat("stop standby for room: ", RoomId, LogString);
+       .println(LogString);
+       .send(temperatureControl, untell, specificTemperatureTarget(RoomId, _));
+       .send(humidityControl, untell, specificHumidityTarget(RoomId, _));
+       .send(luminosityControl, untell, specificIlluminanceTarget(RoomId, _, _));
+       .send(luminosityControl, untell, specificIlluminanceTarget(RoomId, _));
        !!checkStandbyEnd.
 
 { include("$jacamoJar/templates/common-cartago.asl") }
