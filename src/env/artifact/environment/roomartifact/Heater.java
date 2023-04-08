@@ -9,7 +9,12 @@
 package artifact.environment.roomartifact;
 
 import cartago.OPERATION;
+import entity.actuator.ActuatorID;
+import entity.actuator.ActuatorType;
+import entity.room.RoomID;
+import infrastructure.digitaltwins.DigitalTwinManager;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -17,15 +22,29 @@ import java.util.logging.Logger;
  * to the heating part.
  */
 public class Heater extends AbstractRoomArtifact implements SwitchableArtifact {
+    private ActuatorID heaterId;
+
+    @Override
+    protected final void init(final String roomId) {
+        super.init(roomId);
+        final Optional<ActuatorID> actuatorID =
+                new DigitalTwinManager().findActuatorInRoom(ActuatorType.HEATING, new RoomID(roomId));
+        if (actuatorID.isPresent()) {
+            this.heaterId = actuatorID.get();
+        } else {
+            throw new IllegalArgumentException("No Heater available in room: " + roomId);
+        }
+    }
+
     @Override
     @OPERATION
     public final void turnOn() {
-        Logger.getLogger(Heater.class.toString()).info("[" + this.getRoomId() + "]" + " ON");
+        Logger.getLogger(Heater.class.toString()).info("[" + this.getRoomId() + "] " + this.heaterId.getId() + " ON");
     }
 
     @Override
     @OPERATION
     public final void turnOff() {
-        Logger.getLogger(Heater.class.toString()).info("[" + this.getRoomId() + "]" + " OFF");
+        Logger.getLogger(Heater.class.toString()).info("[" + this.getRoomId() + "] " + this.heaterId.getId() + " OFF");
     }
 }

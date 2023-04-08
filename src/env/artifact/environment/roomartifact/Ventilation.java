@@ -9,7 +9,12 @@
 package artifact.environment.roomartifact;
 
 import cartago.OPERATION;
+import entity.actuator.ActuatorID;
+import entity.actuator.ActuatorType;
+import entity.room.RoomID;
+import infrastructure.digitaltwins.DigitalTwinManager;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -17,6 +22,20 @@ import java.util.logging.Logger;
  * to the ventilation part.
  */
 public class Ventilation extends AbstractRoomArtifact implements DimmableArtifact {
+    private ActuatorID ventilationId;
+
+    @Override
+    protected final void init(final String roomId) {
+        super.init(roomId);
+        final Optional<ActuatorID> actuatorID =
+                new DigitalTwinManager().findActuatorInRoom(ActuatorType.VENTILATION, new RoomID(roomId));
+        if (actuatorID.isPresent()) {
+            this.ventilationId = actuatorID.get();
+        } else {
+            throw new IllegalArgumentException("No Ventilation available in room: " + roomId);
+        }
+    }
+
     @Override
     @OPERATION
     public final void setIntensity(final int intensityPercentage) {
@@ -25,6 +44,6 @@ public class Ventilation extends AbstractRoomArtifact implements DimmableArtifac
         }
 
         Logger.getLogger(Ventilation.class.toString())
-              .info("[" + this.getRoomId() + "]" + " Set " + intensityPercentage);
+              .info("[" + this.getRoomId() + "] " + this.ventilationId.getId() + " Set " + intensityPercentage);
     }
 }
