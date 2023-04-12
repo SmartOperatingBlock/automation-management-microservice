@@ -11,6 +11,7 @@ junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref 
 kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.3.2-ce"}
 kafka-json = { module = "io.confluent:kafka-json-serializer", version = "7.3.2"}
 snakeyaml = { module = "org.yaml:snakeyaml", version = "1.21" }
+wot-servient = { module = "city.sane.wot-servient:wot-servient", version = "1.15" }
 
 [bundles]
 

@@ -26,6 +26,9 @@ repositories {
     maven {
         url = uri("https://packages.confluent.io/maven")
     }
+    maven {
+        url = uri("https://git.informatik.uni-hamburg.de/api/v4/groups/sane-public/-/packages/maven")
+    }
 }
 
 dependencies {
@@ -36,6 +39,7 @@ dependencies {
     implementation(libs.kafka.clients)
     implementation(libs.kafka.json)
     implementation(libs.snakeyaml)
+    implementation(libs.wot.servient)
     testImplementation(libs.junit.api)
     testRuntimeOnly(libs.junit.engine)
 }
