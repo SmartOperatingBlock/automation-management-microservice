@@ -83,3 +83,9 @@ tasks.named("clean") {
     buildDir.deleteRecursively()
     delete("log")
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(15))
+    }
+}
