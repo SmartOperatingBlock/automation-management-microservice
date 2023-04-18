@@ -38,7 +38,7 @@ public class Heater extends AbstractActuatorInRoomArtifact implements Switchable
     public final void turnOn() {
         Logger.getLogger(Heater.class.toString()).info("[" + this.getRoomId().getId() + "] "
                 + this.getActuatorID().getId() + " ON");
-        actuator.turnOn(this.wotInvoker);
+        this.actuator.turnOn(this.wotInvoker);
     }
 
     @Override
@@ -46,6 +46,6 @@ public class Heater extends AbstractActuatorInRoomArtifact implements Switchable
     public final void turnOff() {
         Logger.getLogger(Heater.class.toString()).info("[" + this.getRoomId().getId() + "] "
                 + this.getActuatorID().getId() + " OFF");
-        actuator.turnOff(this.wotInvoker);
+        this.actuator.turnOff(this.wotInvoker);
     }
 }
