@@ -28,6 +28,6 @@ public class DimmableActuator extends Actuator {
      * @param invoker the invoker to call
      */
     public void setIntensity(final int intensity, final DimmableInvoker invoker) {
-        invoker.setIntensity(intensity);
+        invoker.setIntensity(this.getId(), intensity);
     }
 }

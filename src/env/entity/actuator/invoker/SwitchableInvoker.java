@@ -8,17 +8,21 @@
 
 package entity.actuator.invoker;
 
+import entity.actuator.ActuatorID;
+
 /**
  * Interface that models an actuator invoker that can be turned on and off.
  */
 public interface SwitchableInvoker {
     /**
      * Turn the actuator on.
+     * @param actuatorID the id of the actuator.
      */
-    void turnOn();
+    void turnOn(ActuatorID actuatorID);
 
     /**
      * Turn the actuator off.
+     * @param actuatorID the id of the actuator.
      */
-    void turnOff();
+    void turnOff(ActuatorID actuatorID);
 }

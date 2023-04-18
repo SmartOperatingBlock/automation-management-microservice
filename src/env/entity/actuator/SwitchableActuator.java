@@ -27,7 +27,7 @@ public class SwitchableActuator extends Actuator {
      * @param invoker the invoker to call.
      */
     public void turnOn(final SwitchableInvoker invoker) {
-        invoker.turnOn();
+        invoker.turnOn(this.getId());
     }
 
     /**
@@ -35,6 +35,6 @@ public class SwitchableActuator extends Actuator {
      * @param invoker the invoker to call.
      */
     public void turnOff(final SwitchableInvoker invoker) {
-        invoker.turnOff();
+        invoker.turnOff(this.getId());
     }
 }

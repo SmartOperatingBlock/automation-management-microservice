@@ -8,13 +8,16 @@
 
 package entity.actuator.invoker;
 
+import entity.actuator.ActuatorID;
+
 /**
  * Interface that models an actuator invoker that ca be turned on with an intensity.
  */
 public interface DimmableInvoker {
     /**
      * Set the intensity of the actuator.
+     * @param actuatorID the id of the actuator.
      * @param intensity the intensity to set in the actuator.
      */
-    void setIntensity(int intensity);
+    void setIntensity(ActuatorID actuatorID, int intensity);
 }
