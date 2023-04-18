@@ -64,6 +64,8 @@
        makeArtifact(ResultString, "artifact.environment.roomartifact.AmbientLight", [RoomId], AmbientLightId);
        setIntensity(Value) [aid(AmbientLightId)];
        disposeArtifact(AmbientLightId).
+-!setAmbientLight(RoomId, Value)
+    <- true.
 
 // Surgical light set goal
 +!setSurgicalLight(RoomId, Value)
@@ -71,6 +73,8 @@
        makeArtifact(ResultString, "artifact.environment.roomartifact.SurgicalLight", [RoomId], SurgicalLightId);
        setIntensity(Value) [aid(SurgicalLightId)];
        disposeArtifact(SurgicalLightId).
+-!setSurgicalLight(RoomId, Value)
+    <- true.
 
 // Obtain the operating block observer
 +?obtainObserver(OperatingBlockObserverId)
