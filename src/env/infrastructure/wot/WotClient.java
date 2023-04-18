@@ -9,7 +9,6 @@
 package infrastructure.wot;
 
 import city.sane.wot.DefaultWot;
-import city.sane.wot.Wot;
 import city.sane.wot.WotException;
 import city.sane.wot.thing.ConsumedThing;
 import okhttp3.OkHttpClient;
@@ -45,13 +44,15 @@ public class WotClient {
     public WotClient(final String thingId) {
         try {
             final String thingUrl = System.getenv(THING_DIRECTORY_VARIABLE) + thingId;
-            final Wot wotClient = DefaultWot.clientOnly();
-            final String thingDescription = this.obtainThingDescription(thingUrl);
-            this.thing = wotClient.consume(thingDescription);
+            final String thingDescription = this.obtainThingDescription(thingUrl).orElse("");
+            if (thingDescription.isEmpty()) {
+                throw new IllegalArgumentException("Thing Description for " + thingId + " not available");
+            }
+            this.thing = DefaultWot.clientOnly().consume(thingDescription);
         } catch (final WotException e) {
             Logger.getLogger(WotClient.class.toString()).info("Wot TDD configuration error");
         } catch (IOException e) {
-            Logger.getLogger(WotClient.class.toString()).info(thingId + " does not have a Thing Description associated");
+            Logger.getLogger(WotClient.class.toString()).info("Error in obtaining Thing Description for " + thingId);
         }
     }
 
@@ -61,25 +62,34 @@ public class WotClient {
      * @param inputs the inputs of the action.
      */
     public void invoke(final String action, final Map<String, Object> inputs) {
-        try {
-            this.thing.getActions().get(action).invoke(inputs).get();
-        } catch (final InterruptedException | ExecutionException e) {
-            Logger.getLogger(WotClient.class.toString()).info("Error in invoking '" + action + "' on " + thing.getId());
-        }
+        Optional.ofNullable(this.thing.getActions().get(action)).ifPresentOrElse(thingAction -> {
+                try {
+                    thingAction.invoke(inputs).get();
+                } catch (final InterruptedException | ExecutionException e) {
+                    Logger.getLogger(WotClient.class.toString())
+                          .info("Error in invoking '" + action + "' on " + this.thing.getId());
+                }
+            },
+            () -> Logger.getLogger(WotClient.class.toString())
+                        .info("Action " + action + " not available in " + this.thing.getId())
+        );
     }
 
-    private String obtainThingDescription(final String thingUrl) throws IOException {
+    private Optional<String> obtainThingDescription(final String thingUrl) throws IOException {
         // We need that because sane-city wot doesn't support application/td+json schema.
         final OkHttpClient httpClient = new OkHttpClient();
         final Request request = new Request.Builder().url(thingUrl).get().build();
         try (Response response = httpClient.newCall(request).execute()) {
-            return Optional.ofNullable(response.body()).map(responseBody -> {
-                try {
-                    return responseBody.string();
-                } catch (IOException e) {
-                    return "";
-                }
-            }).orElse("");
+            return Optional.of(response)
+                    .filter(Response::isSuccessful)
+                    .map(Response::body)
+                    .map(responseBody -> {
+                        try {
+                            return responseBody.string();
+                        } catch (IOException e) {
+                            return "";
+                        }
+                    });
         }
     }
 }
