@@ -1,5 +1,6 @@
 [versions]
 junit = "5.9.2"
+wot = "1.15"
 
 [libraries]
 azure-digital-twins = { module = "com.azure:azure-digitaltwins-core", version = "1.3.7" }
@@ -11,7 +12,8 @@ junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref 
 kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.3.2-ce"}
 kafka-json = { module = "io.confluent:kafka-json-serializer", version = "7.3.2"}
 snakeyaml = { module = "org.yaml:snakeyaml", version = "1.21" }
-wot-servient = { module = "city.sane.wot-servient:wot-servient", version = "1.15" }
+wot-servient = { module = "city.sane.wot-servient:wot-servient", version.ref = "wot" }
+wot-servient-binding-http = { module = "city.sane.wot-servient:wot-servient-binding-http", version.ref = "wot"}
 
 [bundles]
 
