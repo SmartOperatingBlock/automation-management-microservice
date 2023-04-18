@@ -10,3 +10,4 @@ You need to specify the following environment variable:
 - `BOOTSTRAP_SERVER_URL`: the kafka connection endpoint
 - `CONFIG_PATH`: the path where the microservice can find the configuration for environmental data and automation scenarios.
 - `SCHEMA_REGISTRY_URL`: the schema registry url
+- `THING_DESCRIPTION_DIRECTORY_BASE_URL`: the base url for the thing description directory. To this base url must be necessary to add only the id of the thing.
