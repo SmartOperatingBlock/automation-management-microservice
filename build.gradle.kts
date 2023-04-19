@@ -42,7 +42,7 @@ dependencies {
     implementation(libs.snakeyaml)
     implementation(libs.wot.servient)
     implementation(libs.wot.servient.binding.http)
-    testImplementation(libs.junit.api)
+    testImplementation(libs.bundles.java.testing)
     testRuntimeOnly(libs.junit.engine)
 }
 
