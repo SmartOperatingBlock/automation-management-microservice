@@ -21,6 +21,9 @@ public class ActuatorID {
      * @param id the id.
      */
     public ActuatorID(final String id) {
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("Actuator ID must not be empty");
+        }
         this.id = id;
     }
 
