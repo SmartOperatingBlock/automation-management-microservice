@@ -15,19 +15,18 @@
 
 +!observeOperatingBlock
     <- ?obtainObserver(OperatingBlockObserverId);
-       start [aid(OperatingBlockObserverId)];
        focus(OperatingBlockObserverId).
 
-+medicalTechnologyUsage(Type, Value, RoomId)
-    <- .println(Type);
-       .println(Value);
-       .println(RoomId).
++medicalTechnologyUsage(Type, true, RoomId) // Usage of a medical technology
+    <- true.
+
++medicalTechnologyUsage(Type, false, RoomId) // Stop usage of a medical technology
+    <- true.
 
 // Obtain the operating block observer
 +?obtainObserver(OperatingBlockObserverId)
     <- lookupArtifact("operating_block_observer", OperatingBlockObserverId).
 
-// If the operating block observer artifact is not found in the workspace, then create it
 -?obtainObserver(OperatingBlockObserverId)
     <- .wait(100);
        ?obtainObserver(OperatingBlockObserverId).
