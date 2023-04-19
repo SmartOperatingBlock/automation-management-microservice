@@ -21,6 +21,9 @@ public class MedicalTechnologyID {
      * @param id the id
      */
     public MedicalTechnologyID(final String id) {
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("Medical Technology ID must not be empty");
+        }
         this.id = id;
     }
 

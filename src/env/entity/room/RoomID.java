@@ -21,6 +21,9 @@ public class RoomID {
      * @param id the id.
      */
     public RoomID(final String id) {
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("Room ID must not be empty");
+        }
         this.id = id;
     }
 

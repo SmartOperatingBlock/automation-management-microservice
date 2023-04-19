@@ -11,6 +11,8 @@ package artifact.config;
 import cartago.Artifact;
 import cartago.OPERATION;
 import application.presenter.configuration.model.Configuration;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 import org.yaml.snakeyaml.representer.Representer;
@@ -38,9 +40,9 @@ public class ConfigurationArtifact extends Artifact {
      */
     @OPERATION
     void load() {
-        final Representer represent = new Representer();
+        final Representer represent = new Representer(new DumperOptions());
         represent.getPropertyUtils().setSkipMissingProperties(true);
-        final Yaml yaml = new Yaml(new Constructor(Configuration.class), represent);
+        final Yaml yaml = new Yaml(new Constructor(Configuration.class, new LoaderOptions()), represent);
         try (
                 BufferedInputStream configInputStream = new BufferedInputStream(
                         new FileInputStream(System.getenv(CONFIGURATION_PATH_VARIABLE))
