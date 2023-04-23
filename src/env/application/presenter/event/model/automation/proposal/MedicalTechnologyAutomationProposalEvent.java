@@ -21,6 +21,7 @@ public class MedicalTechnologyAutomationProposalEvent implements Event<MedicalTe
     public static final String MEDICAL_TECHNOLOGY_AUTOMATION_PROPOSAL_EVENT_KEY =
             "MEDICAL_TECHNOLOGY_AUTOMATION_PROPOSAL_EVENT";
 
+    private final String key;
     private final MedicalTechnologyAutomationProposalPayload data;
     private final String dateTime;
 
@@ -32,13 +33,14 @@ public class MedicalTechnologyAutomationProposalEvent implements Event<MedicalTe
     public MedicalTechnologyAutomationProposalEvent(
             final MedicalTechnologyAutomationProposalPayload data,
             final String dateTime) {
+        this.key = MEDICAL_TECHNOLOGY_AUTOMATION_PROPOSAL_EVENT_KEY;
         this.data = data;
         this.dateTime = dateTime;
     }
 
     @Override
     public final String getKey() {
-        return MEDICAL_TECHNOLOGY_AUTOMATION_PROPOSAL_EVENT_KEY;
+        return this.key;
     }
 
     @Override
