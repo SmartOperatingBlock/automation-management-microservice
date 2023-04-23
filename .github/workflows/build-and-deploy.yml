@@ -99,6 +99,9 @@ jobs:
           code-documentation-generation-command: ./gradlew javadoc
           code-documentation-dst-folder: './build/docs/javadoc'
           code-documentation-site-folder: 'documentation/code-doc'
+          should-generate-asyncapi-documentation: true
+          asyncapi-documentation-input-file: 'docs/asyncapi/asyncapi.yml'
+          asyncapi-documentation-dst-folder: 'documentation/asyncapi-doc'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   success:
