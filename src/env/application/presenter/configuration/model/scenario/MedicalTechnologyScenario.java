@@ -8,6 +8,8 @@
 
 package application.presenter.configuration.model.scenario;
 
+import java.util.Objects;
+
 /**
  * Class that models a medical technology scenario config.
  */
@@ -77,5 +79,22 @@ public class MedicalTechnologyScenario {
      */
     public void setSurgicalIlluminance(final Double surgicalIlluminance) {
         this.surgicalIlluminance = surgicalIlluminance;
+    }
+
+    @Override
+    public final boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || this.getClass() != other.getClass()) {
+            return false;
+        }
+        final MedicalTechnologyScenario that = (MedicalTechnologyScenario) other;
+        return this.getMedicalTechnologyType().equals(that.getMedicalTechnologyType());
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(this.getMedicalTechnologyType());
     }
 }
