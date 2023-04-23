@@ -15,6 +15,8 @@
 !checkPrePostOperatingRoomStandbyProposals.
 !checkOperatingRoomStandbyProposals.
 !checkStandbyEnd.
+!checkLightSupportProposals.
+!checkLightSupportEnd.
 
 +!loadConfig
     <- makeArtifact(configuration, "artifact.config.ConfigurationArtifact", [], ConfigurationId);
@@ -40,7 +42,7 @@
        .send(powerSaver, tell, standbyEnvironmentConfig("preOperatingRoom", T, H, AL)).
 
 +medicalTechnologyScenario(MT, AL, SL)
-    <- .send(medicalTechnologySupporter, tell, scenario(MT, AL, SL)).
+    <- .send(lightAutomationSupporter, tell, scenario(MT, AL, SL)).
 
 
 // Check standby proposals for pre/post operating room
@@ -72,6 +74,21 @@
        .send(luminosityControl, untell, specificIlluminanceTarget(RoomId, _, _));
        .send(luminosityControl, untell, specificIlluminanceTarget(RoomId, _));
        !!checkStandbyEnd.
+
++!checkLightSupportProposals
+    <- in(lightSupportStart, RoomId, AmbientLight, SurgicalLight);
+       .concat("request light scenario in ", RoomId, LogString);
+       println(LogString);
+       .send(luminosityControl, tell, specificIlluminanceTarget(RoomId, AmbientLight, SurgicalLight));
+       !!checkLightSupportProposals.
+
++!checkLightSupportEnd
+    <- in(lightSupportStop, RoomId);
+       .concat("stop light scenario in ", RoomId, LogString);
+       println(LogString);
+       .send(luminosityControl, untell, specificIlluminanceTarget(RoomId, _, _));
+       !!checkLightSupportEnd.
+       
 
 { include("$jacamoJar/templates/common-cartago.asl") }
 { include("$jacamoJar/templates/common-moise.asl") }
