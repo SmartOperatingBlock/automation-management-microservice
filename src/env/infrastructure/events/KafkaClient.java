@@ -34,6 +34,7 @@ public class KafkaClient implements EventManager, EventSender {
     private static final String SCHEMA_REGISTRY_URL_VARIABLE = "SCHEMA_REGISTRY_URL";
     private static final String ROOM_EVENT_TOPIC = "room-events";
     private static final String MEDICAL_TECHNOLOGY_EVENT_TOPIC = "process-events";
+    private static final String AUTOMATION_REQUEST_EVENT_TOPIC = "automation-requests-events";
     private static final String AUTOMATION_PROPOSAL_EVENT_TOPIC = "automation-proposal-events";
     private static final long POLLING_TIME = 100L;
 
@@ -66,7 +67,11 @@ public class KafkaClient implements EventManager, EventSender {
         );
         this.kafkaConsumer = new KafkaConsumer<>(kafkaConfiguration);
         this.kafkaProducer = new KafkaProducer<>(kafkaConfiguration);
-        this.kafkaConsumer.subscribe(List.of(ROOM_EVENT_TOPIC, MEDICAL_TECHNOLOGY_EVENT_TOPIC));
+        this.kafkaConsumer.subscribe(List.of(
+                ROOM_EVENT_TOPIC,
+                MEDICAL_TECHNOLOGY_EVENT_TOPIC,
+                AUTOMATION_REQUEST_EVENT_TOPIC
+        ));
         this.eventDeserializer = new EventDeserializerImpl();
     }
 
