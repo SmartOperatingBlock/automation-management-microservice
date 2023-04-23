@@ -36,7 +36,7 @@ public class KafkaClient implements EventManager, EventSender {
     private static KafkaClient instance;
 
     private final KafkaConsumer<String, String> kafkaConsumer;
-    private final KafkaProducer<String, Event<?>> kafkaProducer;
+    private final KafkaProducer<String, String> kafkaProducer;
     private final EventDeserializer eventDeserializer;
 
     /**
@@ -89,7 +89,9 @@ public class KafkaClient implements EventManager, EventSender {
             "schema.registry.url", schemaRegistryUrl,
             "group.id", "automation-management-consumer",
             "key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer",
-            "value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer"
+            "value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer",
+            "key.serializer", "org.apache.kafka.common.serialization.StringSerializer",
+            "value.serializer", "org.apache.kafka.common.serialization.StringSerializer"
         );
     }
 
