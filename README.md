@@ -32,3 +32,4 @@ If you want to run it via docker container:
 ## Documentation
 - Check out the website [here](https://smartoperatingblock.github.io/automation-management-microservice/)
 - Direct link to the *Code* documentation [here](https://smartoperatingblock.github.io/automation-management-microservice/documentation/code-doc/)
+- Direct link to the *AsyncAPI* documentation [here](https://smartoperatingblock.github.io/automation-management-microservice/documentation/asyncapi-doc)
