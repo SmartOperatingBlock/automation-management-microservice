@@ -12,6 +12,6 @@ mas automation_management_microservice {
     agent temperatureControl
     agent humidityControl
     agent luminosityControl
-    agent medicalTechnologySupporter
+    agent lightAutomationSupporter
     agent powerSaver
 }
