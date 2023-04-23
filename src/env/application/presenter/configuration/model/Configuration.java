@@ -14,8 +14,8 @@ import application.presenter.configuration.model.scenario.MedicalTechnologyScena
 import application.presenter.configuration.model.standby.OperatingRoomStandbyMode;
 import application.presenter.configuration.model.standby.PrePostOperatingRoomStandbyMode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class that models the configuration loaded.
@@ -25,7 +25,7 @@ public class Configuration {
     private OperatingRoomStandbyMode operatingRoomStandbyMode;
     private EnvironmentalDataConfig prePostOperatingRoom;
     private PrePostOperatingRoomStandbyMode prePostOperatingRoomStandbyMode;
-    private List<MedicalTechnologyScenario> medicalTechnologyScenarios;
+    private Set<MedicalTechnologyScenario> medicalTechnologyScenarios;
 
     /**
      * Operating room environmental data config getter.
@@ -92,18 +92,18 @@ public class Configuration {
     }
 
     /**
-     * Medical Technology scenario list getter.
+     * Medical Technology scenario set getter.
      * @return the medical technology scenarios set in the configuration.
      */
-    public List<MedicalTechnologyScenario> getMedicalTechnologyScenarios() {
-        return new ArrayList<>(this.medicalTechnologyScenarios);
+    public Set<MedicalTechnologyScenario> getMedicalTechnologyScenarios() {
+        return new HashSet<>(this.medicalTechnologyScenarios);
     }
 
     /**
      * Setter of the medical technology scenarios.
      * @param medicalTechnologyScenarios to set.
      */
-    public void setMedicalTechnologyScenarios(final List<MedicalTechnologyScenario> medicalTechnologyScenarios) {
-        this.medicalTechnologyScenarios = new ArrayList<>(medicalTechnologyScenarios);
+    public void setMedicalTechnologyScenarios(final Set<MedicalTechnologyScenario> medicalTechnologyScenarios) {
+        this.medicalTechnologyScenarios = new HashSet<>(medicalTechnologyScenarios);
     }
 }
