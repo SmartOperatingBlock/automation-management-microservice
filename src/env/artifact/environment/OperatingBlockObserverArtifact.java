@@ -9,6 +9,9 @@
 package artifact.environment;
 
 import application.controller.manager.EventManager;
+import application.presenter.event.model.automation.request.customlight.payload.CustomLightSetupRequestPayload;
+import application.presenter.event.model.automation.request.customlight.payload.CustomLightStopRequestPayload;
+import application.presenter.event.model.automation.request.medicaltechnology.MedicalTechnologyAutomationRequestEvent;
 import application.presenter.event.model.medicaltechnology.MedicalTechnologyEvent;
 import application.presenter.event.model.medicaltechnology.payload.MedicalTechnologyUsagePayload;
 import application.presenter.event.model.roomevent.RoomEvent;
@@ -96,6 +99,26 @@ public class OperatingBlockObserverArtifact extends Artifact {
                                             medicalTechnology.getType().getName(),
                                             medicalTechnologyUsageEvent.getData().isInUse(),
                                             room.getId())));
+                }
+                case MedicalTechnologyAutomationRequestEvent.MEDICAL_TECHNOLOGY_AUTOMATION_REQUEST_EVENT_KEY -> {
+                    final MedicalTechnologyAutomationRequestEvent medicalTechnologyAutomationRequestEvent =
+                            (MedicalTechnologyAutomationRequestEvent) event;
+                    signal("medicalTechnologyRequestScenario",
+                            medicalTechnologyAutomationRequestEvent.getData().getRoomId(),
+                            medicalTechnologyAutomationRequestEvent.getData().getMedicalTechnologyType());
+                }
+                case CustomLightSetupRequestPayload.CUSTOM_LIGHT_SETUP_REQUEST_EVENT_KEY -> {
+                    final CustomLightSetupRequestPayload setupPayload =
+                            (CustomLightSetupRequestPayload) event.getData();
+                    signal("customLightSetupRequest",
+                            setupPayload.getRoomId(),
+                            setupPayload.getAmbientLightLux(),
+                            setupPayload.getSurgicalLightLux());
+                }
+                case CustomLightStopRequestPayload.CUSTOM_LIGHT_STOP_REQUEST_EVENT_KEY -> {
+                    final CustomLightStopRequestPayload stopPayload =
+                            (CustomLightStopRequestPayload) event.getData();
+                    signal("customLightStopRequest", stopPayload.getRoomId());
                 }
                 default -> {
                     // not handled
