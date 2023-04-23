@@ -1,0 +1,199 @@
+asyncapi: 2.6.0
+id: 'https://github.com/smartoperatingblock/automation-management-microserive'
+tags:
+  - name: automation scenarios
+  - name: medical technologies support
+  - name: environment monitoring and management
+info:
+  title: Automation Scenario Microservice
+  version: 1.0.0
+  description: |
+    The Automation Management Microservice of the Smart Operating Block project.
+    ### Features:
+    * Manage the automation scenarios within the Operating Block
+    * Receive custom automation scenario requests
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
+  contact:
+    name: API Support
+    url: https://smartoperatingblock.github.io
+    email: info@smartoperatingblock.com
+
+servers:
+  production:
+    url: http://broker:29092
+    protocol: kafka
+    description: The event broker
+
+defaultContentType: application/json
+
+channels:
+  automation-proposals-events:
+    description: The topic on which the automation scenario proposals are published.
+    subscribe:
+      operationId: getAutomationScenarioProposals
+      summary: |
+        Get automation scenario proposals in order to understand how it is possible to adapt the environment to the current state.
+      message:
+        "$ref": '#/components/messages/medicalTechnologyAutomationProposalEvent'
+
+  automation-requests-events:
+    description: The topic on which the microservice expects to find requests for automation scenarios already proposed or not.
+    publish:
+      operationId: requestAutomationScenario
+      summary: |
+        Request an automation scenario to the microservice.
+      message:
+        oneOf:
+          - "$ref": '#/components/messages/medicalTechnologyAutomationRequestEvent'
+          - "$ref": '#/components/messages/customLightRequest'
+          - "$ref": '#/components/messages/customLightStop'
+
+
+components:
+  messages:
+    medicalTechnologyAutomationProposalEvent:
+      messageId: medicalTechnologyAutomationProposalEvent
+      name: medicalTechnologyAutomationProposalEvent
+      title: Medical Technology Automation Proposal event
+      summary: The event with which the microservice proposes an automation scenario to support the usage of a Medical Technology.
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/medicalTechnologyAutomationProposalEventSchema"
+
+    medicalTechnologyAutomationRequestEvent:
+      messageId: medicalTechnologyAutomationRequestEvent
+      name: medicalTechnologyAutomationRequestEvent
+      title: Medical Technology Automation Request event
+      summary: The event needed to request an automation scenario to adapt the environment to a medical technology usage. It's not needed a beforehand proposal, but the medical technology must be in use.
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/medicalTechnologyAutomationRequestEventSchema"
+
+    customLightRequest:
+      messageId: customLightRequest
+      name: customLightRequest
+      title: Custom Light Request event
+      summary: The event needed to request a custom setup for the lights inside an operating room.
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/customLightRequestEventSchema"
+
+    customLightStop:
+      messageId: customLightStop
+      name: customLightStop
+      title: Custom Light Stop event
+      summary: The event needed to stop the usage of the custom setup for the lights inside an operating room.
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/customLightStopEventSchema"
+
+  schemas:
+    medicalTechnologyAutomationProposalEventSchema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the event.
+          const: MEDICAL_TECHNOLOGY_AUTOMATION_PROPOSAL_EVENT
+        data:
+          type: object
+          $ref: "#/components/schemas/medicalTechnologyAutomationProposalPayload"
+        dateTime:
+          type: string
+          description: The timestamp of the event. It must comply with the ISO 8601 standard.
+
+    medicalTechnologyAutomationProposalPayload:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: The room id where the medical technology is being used.
+        medicalTechnologyType:
+          type: string
+          description: The medical technology type currently in use.
+          enum:
+            - endoscope
+            - xray
+        ambientLightLux:
+          type: integer
+          description: The lux proposed to set in ambient lights.
+        surgicalLightLux:
+          type: integer
+          description: The lux proposed to set in surgical lights.
+
+    medicalTechnologyAutomationRequestEventSchema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the event.
+          const: MEDICAL_TECHNOLOGY_AUTOMATION_REQUEST_EVENT
+        data:
+          type: object
+          $ref: "#/components/schemas/medicalTechnologyAutomationRequestPayload"
+        dateTime:
+          type: string
+          description: The timestamp of the event. It must comply with the ISO 8601 standard.
+
+    medicalTechnologyAutomationRequestPayload:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: The room id where request the automation scenario.
+        medicalTechnologyType:
+          type: string
+          description: The medical technology type for which request the automation scenario.
+          enum:
+            - endoscope
+            - xray
+
+    customLightRequestEventSchema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the event.
+          const: CUSTOM_LIGHT_SETUP_REQUEST_EVENT
+        data:
+          type: object
+          $ref: "#/components/schemas/customLightRequestPayload"
+        dateTime:
+          type: string
+          description: The timestamp of the event. It must comply with the ISO 8601 standard.
+
+    customLightRequestPayload:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: The ID of the room in which to apply the custom light setting.
+        ambientLightLux:
+          type: integer
+          description: The lux to set in ambient lights.
+        surgicalLightLux:
+          type: integer
+          description: The lux to set in surgical lights.
+
+    customLightStopEventSchema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the event.
+          const: CUSTOM_LIGHT_STOP_REQUEST_EVENT
+        data:
+          type: object
+          $ref: "#/components/schemas/customLightStopPayload"
+        dateTime:
+          type: string
+          description: The timestamp of the event. It must comply with the ISO 8601 standard.
+
+    customLightStopPayload:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: The ID of the room in which to stop the custom light setting.
