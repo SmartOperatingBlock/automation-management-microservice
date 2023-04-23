@@ -1,3 +1,81 @@
+## [1.1.0](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.0.0...1.1.0) (2023-04-23)
+
+
+### Features
+
+* create operating room proposer artifact ([a060839](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/a06083997ff753c4756e381722b75592a7fa4a6f))
+* handle light automation proposals ([b6568e0](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/b6568e00bda1c85d6425cd0316787c43bd7363d7))
+* implement light automation supporter agent ([f0ba141](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/f0ba141df0e839649aa3ceb38d495b0d6d9bfa7f))
+* implement send of events in kafka client ([046ee50](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/046ee506a671f6ecf1e008d5c959fcbf32f74197))
+
+
+### Tests
+
+* add clean architecture test ([3ae6296](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/3ae6296921ca9cd45009a0858657f4091d1b9d37))
+* add tests for actuator id ([5afead9](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/5afead9a12b34f87191c2c9f2793de1071be7e9d))
+* add tests for adt query builder ([1431505](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/143150552dced4a1ce426999cc871c694fbd5935))
+* add tests for file configuration loader ([25ec3fa](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/25ec3fab83b9511884d648655fe992e86d4d3b4b))
+* add tests for medical technology ([dc4fad5](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/dc4fad5b9385107938fd0269f5ca1ef9799de6c2))
+* add tests on actuator ([a1fa522](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/a1fa522848bd5f115a9af165cd572987c7a1836c))
+* add tests on medical technology id ([3509eea](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/3509eeaafd578d345b86613f94cc0426b7a90487))
+* add tests on room id ([6cc21a8](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/6cc21a8449267f990cb8293153131cf1cc833c0f))
+
+
+### Dependency updates
+
+* **deps:** add archunit dependency ([8a78d5c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/8a78d5cea1134257923f61ff895126a08ac4c5c8))
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.8 ([4eae992](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/4eae992ef55034d24f3e3e37ce2d6cf81813d39c))
+* **deps:** update dependency gradle to v8.1.1 ([8b2d2cf](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/8b2d2cfb02a0ab7511902c9c8767315a4b54df1d))
+* **deps:** update dependency io.confluent:kafka-json-serializer to v7.3.3 ([0bfc09a](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/0bfc09aff1542fa5d0deff80aa867c04879c45c0))
+* **deps:** update dependency org.apache.kafka:kafka-clients to v7.3.3-ce ([a194b0d](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/a194b0d7a9177476b4e4f85700f9791067853a83))
+* **deps:** update dependency org.yaml:snakeyaml to v1.33 ([b0da6ed](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/b0da6ed2def9ad3fe6fcc22ba56320efebd9170e))
+* **deps:** update dependency org.yaml:snakeyaml to v2 ([fe6ec08](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/fe6ec083326b6b1a026f6a6bec71df7517413011))
+
+
+### Refactoring
+
+* explicit the event key in order to allow gson serialization ([3b9f9ae](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/3b9f9ae6c78c9b24eed82362ab79f69240d3f99e))
+* improve names ([7357412](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/73574127157615129d8c999815b575f2bc57744d))
+* use file configuration loader ([be2ed5c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/be2ed5cc0c80991211975ee46812ea72d0aa8209))
+
+
+### Documentation
+
+* add asyncapi documentation ([ec10c1d](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/ec10c1d096e433ba870994bb15e962a6f224b4d7))
+
+
+### Build and continuous integration
+
+* add generation and deploy of asyncapi documentation ([ae99df5](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/ae99df51a1a2397d01f144b4250a9fd7f8e3f16a))
+* **deps:** update codecov/codecov-action action to v3.1.3 ([711d3f0](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/711d3f0bf876f84d081345a08b5bd429de55cfc6))
+
+
+### General maintenance
+
+* add check on empty id ([b0b4483](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/b0b4483462a7fc5fec2ccb913331565cf02dab59))
+* add publisher to kafka client ([4afc9a2](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/4afc9a2a824eb3115fff6ab83f796f61b38594e4))
+* add subscription to automation request topic ([89ffbee](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/89ffbeed1f3bc3c96b492f6d064d1d0d61323027))
+* create configuration loader concept ([b218dce](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/b218dcee04a32483134763b0f1f30a169e06f52d))
+* create custom light setup event ([0f04675](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/0f046758aeb9fb9a2425e30ebafe4a5fdb984b7f))
+* create custom light setup event payload interface ([5cc65c3](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/5cc65c39982b2bee35807ea00a4a0fc8f1a159ac))
+* create custom light setup request payload ([479740d](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/479740d314386b5d98a652dd18862f6d8699240b))
+* create custom light setup stop payload ([2e059d4](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/2e059d4f98b32f23b83f05ec6124d2c4a7e72cb4))
+* create event sender concept ([0ba642c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/0ba642c4584549be4a24bbd088d0a291986960b4))
+* create event serializer interface ([e5816de](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/e5816de432a839e8025e747109e44936743d4f85))
+* create file configuration loader ([004b1c5](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/004b1c5c33045ed9d1e278a2b039b89937b0adcb))
+* create medical technology automation proposal event ([e93ac31](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/e93ac3172521f2d33c669b2f23a716928595d942))
+* create medical technology automation request event ([43210ee](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/43210ee1c390e616809e867e6ad191a31e1bf19d))
+* delete test agent ([9789215](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/97892153e6e023493fc60185864c838b14f88541))
+* handle automation scenario events in operating block observer artifact ([8208e13](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/8208e13eb4c2ef5f63888841e0413a842e8955f4))
+* implement event serialization ([44b1c4e](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/44b1c4e5d5c41fd9efd2060f0ac2b765eccfdbab))
+* set up base of medical technology supporter agent ([7ab7bf1](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/7ab7bf113f4f5832417fcea50e5e3891657e5de9))
+* setup light automation supporter agent ([7b07342](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/7b073421c16a95a5ea6ee9ebea38c03f3b39cf57))
+* update event deserializer with automation events ([44aa0a8](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/44aa0a89772f49c0ef21180803fd8ec508e06e82))
+* update README with asyncapi documentation direct link ([3d84b50](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/3d84b50efa55c440a00c165e1f5a070e23554acc))
+* update README with microservice information and badges ([1611b69](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/1611b69eee8501a9398fc1e6e70f93ebf9210b8e))
+* use new snakeyaml APIs ([445905b](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/445905bd70c8719607b7e27b7576460418a195d6))
+* use string serialization for kafka producer ([bc3d5d0](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/bc3d5d000fb72b9d021977c3c9039a045b2f07db))
+
 ## 1.0.0 (2023-04-18)
 
 
