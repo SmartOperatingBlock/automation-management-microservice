@@ -9,6 +9,10 @@
 package application.presenter.event.serialization;
 
 import application.presenter.event.model.Event;
+import application.presenter.event.model.automation.request.customlight.CustomLightRequestEvent;
+import application.presenter.event.model.automation.request.customlight.payload.CustomLightSetupRequestPayload;
+import application.presenter.event.model.automation.request.customlight.payload.CustomLightStopRequestPayload;
+import application.presenter.event.model.automation.request.medicaltechnology.MedicalTechnologyAutomationRequestEvent;
 import application.presenter.event.model.medicaltechnology.MedicalTechnologyEvent;
 import application.presenter.event.model.medicaltechnology.payload.MedicalTechnologyUsagePayload;
 import application.presenter.event.model.roomevent.RoomEvent;
@@ -42,6 +46,18 @@ public class EventDeserializerImpl implements EventDeserializer {
         this.typeMap.put(
                 MedicalTechnologyUsagePayload.MEDICAL_TECHNOLOGY_USAGE_EVENT_KEY,
                 new TypeToken<MedicalTechnologyEvent>() { }.getType()
+        );
+        this.typeMap.put(
+                MedicalTechnologyAutomationRequestEvent.MEDICAL_TECHNOLOGY_AUTOMATION_REQUEST_EVENT_KEY,
+                new TypeToken<MedicalTechnologyAutomationRequestEvent>() { }.getType()
+        );
+        this.typeMap.put(
+                CustomLightSetupRequestPayload.CUSTOM_LIGHT_SETUP_REQUEST_EVENT_KEY,
+                new TypeToken<CustomLightRequestEvent<CustomLightSetupRequestPayload>>() { }.getType()
+        );
+        this.typeMap.put(
+                CustomLightStopRequestPayload.CUSTOM_LIGHT_STOP_REQUEST_EVENT_KEY,
+                new TypeToken<CustomLightRequestEvent<CustomLightStopRequestPayload>>() { }.getType()
         );
     }
 
