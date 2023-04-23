@@ -1,3 +1,20 @@
+## [1.1.1](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.0...1.1.1) (2023-04-23)
+
+
+### Bug Fixes
+
+* handle duplication in medical technology scenarios configuration ([60ae8ac](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/60ae8ac13108052811efbbf1c7accb8fefbe2d88))
+
+
+### Refactoring
+
+* set actuator type in actuator entity ([a8b5ee1](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/a8b5ee17f34d35c04d10de98ca44873e3d610a19))
+
+
+### General maintenance
+
+* define equality of medical technology scenarios only based on medical technology type ([bb19a7e](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/bb19a7e2e83c87540915af26fc77fa89d7f72ad6))
+
 ## [1.1.0](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.0.0...1.1.0) (2023-04-23)
 
 
