@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":9,"i1":10};
+<script type="text/javascript">var data = {"i0":9,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -81,12 +81,12 @@ loadScripts(document, 'script');</script>
 <section class="description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../../application/controller/manager/EventManager.html" title="interface in application.controller.manager">EventManager</a></code></dd>
+<dd><code><a href="../../application/controller/manager/EventManager.html" title="interface in application.controller.manager">EventManager</a></code>, <code><a href="../../application/controller/manager/EventSender.html" title="interface in application.controller.manager">EventSender</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="type-name-label">KafkaClient</span>
 extends java.lang.Object
-implements <a href="../../application/controller/manager/EventManager.html" title="interface in application.controller.manager">EventManager</a></pre>
+implements <a href="../../application/controller/manager/EventManager.html" title="interface in application.controller.manager">EventManager</a>, <a href="../../application/controller/manager/EventSender.html" title="interface in application.controller.manager">EventSender</a></pre>
 <div class="block">This class manage the Kafka client needed to consume events.</div>
 </section>
 <section class="summary">
@@ -143,9 +143,16 @@ implements <a href="../../application/controller/manager/EventManager.html" titl
 </tr>
 <tr class="row-color" id="i1">
 <td class="col-first"><code>void</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#notify(application.presenter.event.model.Event)">notify</a></span>&#8203;(<a href="../../application/presenter/event/model/Event.html" title="interface in application.presenter.event.model">Event</a>&lt;?&gt;&nbsp;eventToSend)</code></th>
+<td class="col-last">
+<div class="block">Method used to send an event through the sender.</div>
+</td>
+</tr>
+<tr class="alt-color" id="i2">
+<td class="col-first"><code>void</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#poll(java.util.function.Consumer)">poll</a></span>&#8203;(java.util.function.Consumer&lt;<a href="../../application/presenter/event/model/Event.html" title="interface in application.presenter.event.model">Event</a>&lt;?&gt;&gt;&nbsp;eventConsumer)</code></th>
 <td class="col-last">
-<div class="block">Polling cycle to obtain all the events.</div>
+<div class="block">Method used to consume events via polling providing a consumer to process them.</div>
 </td>
 </tr>
 </tbody>
@@ -193,10 +200,25 @@ implements <a href="../../application/controller/manager/EventManager.html" titl
 </section>
 </li>
 <li>
+<section class="detail" id="notify(application.presenter.event.model.Event)">
+<h3>notify</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">notify</span>&#8203;(<span class="parameters"><a href="../../application/presenter/event/model/Event.html" title="interface in application.presenter.event.model">Event</a>&lt;?&gt;&nbsp;eventToSend)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../application/controller/manager/EventSender.html#notify(application.presenter.event.model.Event)">EventSender</a></code></span></div>
+<div class="block">Method used to send an event through the sender.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../../application/controller/manager/EventSender.html#notify(application.presenter.event.model.Event)">notify</a></code>&nbsp;in interface&nbsp;<code><a href="../../application/controller/manager/EventSender.html" title="interface in application.controller.manager">EventSender</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>eventToSend</code> - the event to send.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="poll(java.util.function.Consumer)">
 <h3>poll</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">poll</span>&#8203;(<span class="parameters">java.util.function.Consumer&lt;<a href="../../application/presenter/event/model/Event.html" title="interface in application.presenter.event.model">Event</a>&lt;?&gt;&gt;&nbsp;eventConsumer)</span></div>
-<div class="block">Polling cycle to obtain all the events.</div>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">poll</span>&#8203;(<span class="parameters">java.util.function.Consumer&lt;<a href="../../application/presenter/event/model/Event.html" title="interface in application.presenter.event.model">Event</a>&lt;?&gt;&gt;&nbsp;eventConsumer)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../../application/controller/manager/EventManager.html#poll(java.util.function.Consumer)">EventManager</a></code></span></div>
+<div class="block">Method used to consume events via polling providing a consumer to process them.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../../application/controller/manager/EventManager.html#poll(java.util.function.Consumer)">poll</a></code>&nbsp;in interface&nbsp;<code><a href="../../application/controller/manager/EventManager.html" title="interface in application.controller.manager">EventManager</a></code></dd>

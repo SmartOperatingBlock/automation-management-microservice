@@ -4,6 +4,11 @@ application.presenter.configuration.model.environment
 application.presenter.configuration.model.scenario
 application.presenter.configuration.model.standby
 application.presenter.event.model
+application.presenter.event.model.automation.proposal
+application.presenter.event.model.automation.proposal.payload
+application.presenter.event.model.automation.request.customlight
+application.presenter.event.model.automation.request.customlight.payload
+application.presenter.event.model.automation.request.medicaltechnology
 application.presenter.event.model.medicaltechnology
 application.presenter.event.model.medicaltechnology.payload
 application.presenter.event.model.roomevent
@@ -16,6 +21,7 @@ entity.actuator
 entity.actuator.invoker
 entity.medicaltechnology
 entity.room
+infrastructure.configuration
 infrastructure.digitaltwins
 infrastructure.digitaltwins.adtpresentation
 infrastructure.digitaltwins.query
