@@ -22,22 +22,22 @@
     <- makeArtifact("operating_room_proposer", "artifact.environment.OperatingRoomProposerArtifact", [], OperatingRoomSenderId).
 
 // Medical technology usage events
-+medicalTechnologyUsage(Type, true, RoomId) // Usage of a medical technology
-            : scenario(Type, AmbientLight, SurgicalLight) &
-              not medicalTechnologyInUse(Type, R) // Check that the medical technology is not know to be already in use
-    <- +medicalTechnologyInUse(Type, RoomId);
++medicalTechnologyUsage(MedicalTechnologyType, true, RoomId) // Usage of a medical technology
+            : scenario(MedicalTechnologyType, AmbientLight, SurgicalLight) &
+              not medicalTechnologyInUse(MedicalTechnologyType, R) // Check that the medical technology is not know to be already in use
+    <- +medicalTechnologyInUse(MedicalTechnologyType, RoomId);
        lookupArtifact("operating_room_proposer", OperatingRoomSenderId);
-       sendMedicalTechnologyAutomationProposal(RoomId, Type, AmbientLight, SurgicalLight) [aid(OperatingRoomSenderId)].
+       sendMedicalTechnologyAutomationProposal(RoomId, MedicalTechnologyType, AmbientLight, SurgicalLight) [aid(OperatingRoomSenderId)].
 
-+medicalTechnologyUsage(Type, false, RoomId) // Stop usage of a medical technology that isn't currently supported
-            : medicalTechnologyInUse(Type, RoomId) & // Check that the medical technology was in use
-              not medicalTechnologySupported(Type, RoomId) // This plan cover the case in which the doctor chose to not use the support
-    <- -medicalTechnologyInUse(Type, RoomId).
++medicalTechnologyUsage(MedicalTechnologyType, false, RoomId) // Stop usage of a medical technology that isn't currently supported
+            : medicalTechnologyInUse(MedicalTechnologyType, RoomId) & // Check that the medical technology was in use
+              not medicalTechnologySupported(MedicalTechnologyType, RoomId) // This plan cover the case in which the doctor chose to not use the support
+    <- -medicalTechnologyInUse(MedicalTechnologyType, RoomId).
 
-+medicalTechnologyUsage(Type, false, RoomId) // Stop usage of a medical technology that is currently supported
-            : medicalTechnologySupported(Type, RoomId) // This plan cover the case in which the doctor use the support
-    <- -medicalTechnologyInUse(Type, RoomId);
-       -medicalTechnologySupported(Type, RoomId);
++medicalTechnologyUsage(MedicalTechnologyType, false, RoomId) // Stop usage of a medical technology that is currently supported
+            : medicalTechnologySupported(MedicalTechnologyType, RoomId) // This plan cover the case in which the doctor use the support
+    <- -medicalTechnologyInUse(MedicalTechnologyType, RoomId);
+       -medicalTechnologySupported(MedicalTechnologyType, RoomId);
        out(lightSupportStop, RoomId).
 
 // Medical technology automation scenario request from operating room.
