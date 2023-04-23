@@ -17,9 +17,10 @@ public class DimmableActuator extends Actuator {
     /**
      * Default constructor.
      * @param actuatorID the actuator id.
+     * @param actuatorType the actuator type.
      */
-    public DimmableActuator(final ActuatorID actuatorID) {
-        super(actuatorID);
+    public DimmableActuator(final ActuatorID actuatorID, final ActuatorType actuatorType) {
+        super(actuatorID, actuatorType);
     }
 
     /**

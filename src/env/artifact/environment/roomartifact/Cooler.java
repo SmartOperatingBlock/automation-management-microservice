@@ -29,7 +29,7 @@ public class Cooler extends AbstractActuatorInRoomArtifact implements Switchable
      */
     void init(final String roomId) {
         super.init(ActuatorType.COOLING, new RoomID(roomId));
-        this.actuator = new SwitchableActuator(this.getActuatorID());
+        this.actuator = new SwitchableActuator(this.getActuatorID(), ActuatorType.COOLING);
         this.wotInvoker = new WotInvoker();
     }
 

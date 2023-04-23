@@ -17,9 +17,10 @@ public class SwitchableActuator extends Actuator {
     /**
      * Default constructor.
      * @param actuatorID the actuator id.
+     * @param actuatorType the actuator type.
      */
-    public SwitchableActuator(final ActuatorID actuatorID) {
-        super(actuatorID);
+    public SwitchableActuator(final ActuatorID actuatorID, final ActuatorType actuatorType) {
+        super(actuatorID, actuatorType);
     }
 
     /**

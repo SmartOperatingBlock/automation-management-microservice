@@ -29,7 +29,7 @@ public class SurgicalLight extends AbstractActuatorInRoomArtifact implements Dim
      */
     void init(final String roomId) {
         super.init(ActuatorType.SURGICAL_LIGHT, new RoomID(roomId));
-        this.actuator = new DimmableActuator(this.getActuatorID());
+        this.actuator = new DimmableActuator(this.getActuatorID(), ActuatorType.SURGICAL_LIGHT);
         this.wotInvoker = new WotInvoker();
     }
 

@@ -20,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * Test for {@link Actuator} entity.
  */
 class ActuatorTest {
-    private final Actuator actuator = new Actuator(new ActuatorID("actuator1"));
-    private final Actuator actuatorDifferentRef = new Actuator(new ActuatorID("actuator1"));
-    private final Actuator differentActuator = new Actuator(new ActuatorID("actuator2"));
+    private final Actuator actuator = new Actuator(new ActuatorID("actuator1"), ActuatorType.HEATING);
+    private final Actuator actuatorDifferentRef = new Actuator(new ActuatorID("actuator1"), ActuatorType.COOLING);
+    private final Actuator differentActuator = new Actuator(new ActuatorID("actuator2"), ActuatorType.HEATING);
 
     @Test
     @DisplayName("An actuator must not be equal to other actuators with different id other classes")

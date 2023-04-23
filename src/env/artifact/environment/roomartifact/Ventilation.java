@@ -29,7 +29,7 @@ public class Ventilation extends AbstractActuatorInRoomArtifact implements Dimma
      */
     void init(final String roomId) {
         super.init(ActuatorType.VENTILATION, new RoomID(roomId));
-        this.actuator = new DimmableActuator(this.getActuatorID());
+        this.actuator = new DimmableActuator(this.getActuatorID(), ActuatorType.VENTILATION);
         this.wotInvoker = new WotInvoker();
     }
 

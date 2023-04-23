@@ -29,7 +29,7 @@ public class AmbientLight extends AbstractActuatorInRoomArtifact implements Dimm
      */
     void init(final String roomId) {
         super.init(ActuatorType.AMBIENT_LIGHT, new RoomID(roomId));
-        this.actuator = new DimmableActuator(this.getActuatorID());
+        this.actuator = new DimmableActuator(this.getActuatorID(), ActuatorType.AMBIENT_LIGHT);
         this.wotInvoker = new WotInvoker();
     }
 

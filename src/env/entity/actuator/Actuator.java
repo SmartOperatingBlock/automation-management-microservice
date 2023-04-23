@@ -15,21 +15,32 @@ import java.util.Objects;
  */
 public class Actuator {
     private final ActuatorID actuatorID;
+    private final ActuatorType actuatorType;
 
     /**
      * Default constructor.
      * @param actuatorID the actuator id.
+     * @param actuatorType the actuator type.
      */
-    public Actuator(final ActuatorID actuatorID) {
+    public Actuator(final ActuatorID actuatorID, final ActuatorType actuatorType) {
         this.actuatorID = actuatorID;
+        this.actuatorType = actuatorType;
     }
 
     /**
      * Get the actuator id.
      * @return the actuator id.
      */
-    public final ActuatorID getId() {
+    public ActuatorID getId() {
         return this.actuatorID;
+    }
+
+    /**
+     * Get the actuator type.
+     * @return the actuator type.
+     */
+    public ActuatorType getActuatorType() {
+        return this.actuatorType;
     }
 
     @Override
