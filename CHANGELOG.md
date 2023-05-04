@@ -1,3 +1,24 @@
+## [1.1.2](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.1...1.1.2) (2023-05-04)
+
+
+### Bug Fixes
+
+* remove pre download of dependency from dockerfile due to strange conflict with image's internal bash ([67fe252](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/67fe252c59cf81ef4c1b27b627d894c87aa7eea1))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.azure:azure-identity to v1.8.3 ([042d800](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/042d800a30b8c8fca8adab9db04ea140eca63218))
+* **deps:** update dependency com.squareup.okhttp3:okhttp to v4.11.0 ([bd14c72](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/bd14c7275a5fbf1c52ea221e9406fd989c143d4d))
+* **deps:** update dependency io.confluent:kafka-json-serializer to v7.4.0 ([5b33ad3](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/5b33ad39bebc5fc29f8f43d854dcca2d6c8c70b6))
+* **deps:** update dependency org.apache.kafka:kafka-clients to v7.4.0-ce ([d6c9876](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/d6c98763c1bed82a48d4122c6651dfa473ae57f0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.26 ([f1bfbbe](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/f1bfbbe6ef1b87f2bd7b939ece6ea105906c03d0))
+* **deps:** update junit5 monorepo to v5.9.3 ([e1b6d9b](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/e1b6d9b855079d5c47d5c6b541b12b353ebd3e31))
+* **deps:** update plugin java-qa to v1.7.0 ([43f14f8](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/43f14f8d0a8c2937aef2e506229548efb3f61ec6))
+* **deps:** update plugin java-qa to v1.8.0 ([2d3a73f](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/2d3a73fce5fef64eb1ccded4faf7fd3dfb7e10b7))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.7 ([8e591ab](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/8e591ab0861a589115ca7f103a7d086c2b8c38eb))
+* **deps:** update plugin org.gradle.toolchains.foojay-resolver-convention to v0.5.0 ([899ea74](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/899ea74eccb3400b91977a673f37f12175f5e778))
+
 ## [1.1.1](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.0...1.1.1) (2023-04-23)
 
 
