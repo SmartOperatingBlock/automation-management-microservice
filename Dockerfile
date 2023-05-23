@@ -1,3 +1,3 @@
-FROM jomifred/jacamo:1.1
+FROM jomifred/jacamo:1.2
 COPY ./ .
 ENTRYPOINT ./gradlew run
