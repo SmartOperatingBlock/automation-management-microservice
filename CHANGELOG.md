@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.3...1.1.4) (2023-05-31)
+
+
+### Bug Fixes
+
+* update java toolchain version due to change in jacamo container ([cb6333c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/cb6333cc8b1317d42bafdc80fad3fd1efccec820))
+
 ## [1.1.3](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.2...1.1.3) (2023-05-31)
 
 
