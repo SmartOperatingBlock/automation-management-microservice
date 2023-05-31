@@ -98,9 +98,8 @@ public class DigitalTwinManager implements MedicalTechnologyRepository, Actuator
                                                 "T",
                                                 ActuatorAdtPresentation.HAS_ACTUATOR_RELATIONSHIP
                                         ).where("T.$dtId = '" + roomID.getId() + "'")
-                                        .and("CT.type = '"
+                                        .and("CT.type = "
                                                 + ActuatorAdtPresentation.toActuatorDigitalTwinType(actuatorType)
-                                                + "'"
                                         ).toQuery(),
                             String.class).stream()
                 .findFirst()
