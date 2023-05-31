@@ -1,3 +1,33 @@
+## [1.1.3](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.2...1.1.3) (2023-05-31)
+
+
+### Bug Fixes
+
+* use integer values in enum during query on Digital Twins ([44ca43d](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/44ca43d08f2c13d52ffd42cf320b0db421aa91cd))
+
+
+### Build and continuous integration
+
+* **deps:** update codecov/codecov-action action to v3.1.4 ([01ce69c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/01ce69ccb61e2947927ec79174623d6fa5630e4d))
+* **deps:** update smartoperatingblock/documentation-ghp-action action to v1.1.0 ([a48edc8](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/a48edc84601683b2f596b765c4971f3a88cca538))
+
+
+### Dependency updates
+
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.9 ([a1b5643](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/a1b5643d25cac55532089c69837e92ee290835f9))
+* **deps:** update dependency com.azure:azure-identity to v1.9.0 ([817c3c1](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/817c3c1f4499f79363bfe770d392a52cb50dea22))
+* **deps:** update jomifred/jacamo docker tag to v1.2 ([57df361](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/57df361d2564e11da5174c7903b35900ca6ddf26))
+* **deps:** update plugin com.gradle.enterprise to v3.13.1 ([fa6b540](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/fa6b540d29b9f15d5788ee53fb02858d02dc6bb3))
+* **deps:** update plugin com.gradle.enterprise to v3.13.2 ([02820a9](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/02820a9b29052c69505fd1b437a3bb7a5942e5c7))
+* **deps:** update plugin com.gradle.enterprise to v3.13.3 ([07ae839](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/07ae839a1642d83a76bad57b0f4248e3be7b81a8))
+* **deps:** update plugin java-qa to v1.10.0 ([17879f6](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/17879f6a01b244ca87f5ecee82794776b0a740d4))
+* **deps:** update plugin java-qa to v1.9.0 ([fdc7432](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/fdc743274a77bdb0304251ca0d4e71e5364b45ff))
+
+
+### General maintenance
+
+* improve logging ([2617f3a](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/2617f3adf2c8217a9743aa4cbe4310c3715b04da))
+
 ## [1.1.2](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.1...1.1.2) (2023-05-04)
 
 
