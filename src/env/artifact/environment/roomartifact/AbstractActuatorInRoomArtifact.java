@@ -36,7 +36,9 @@ public abstract class AbstractActuatorInRoomArtifact extends Artifact {
         if (resultID.isPresent()) {
             this.actuatorID = resultID.get();
         } else {
-            throw new IllegalArgumentException("No actuator of type " + actuatorType + " available in room: " + roomId);
+            throw new IllegalArgumentException(
+                    "No actuator of type " + actuatorType + " available in room: " + roomId.getId()
+            );
         }
     }
 

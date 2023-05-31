@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 /**
  * This class manage the Kafka client needed to consume events.
@@ -91,8 +92,10 @@ public class KafkaClient implements EventManager, EventSender {
     @Override
     public final void poll(final Consumer<Event<?>> eventConsumer) {
         while (true) {
-            this.kafkaConsumer.poll(Duration.ofMillis(POLLING_TIME)).forEach(event ->
-                    this.eventDeserializer.fromString(event.key(), event.value()).ifPresent(eventConsumer));
+            this.kafkaConsumer.poll(Duration.ofMillis(POLLING_TIME)).forEach(event -> {
+                    Logger.getLogger(KafkaClient.class.toString()).info(event.value());
+                    this.eventDeserializer.fromString(event.key(), event.value()).ifPresent(eventConsumer);
+            });
         }
     }
 
