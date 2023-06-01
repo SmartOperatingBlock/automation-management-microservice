@@ -29,7 +29,7 @@ servers:
 defaultContentType: application/json
 
 channels:
-  automation-proposals-events:
+  automation-proposal-events:
     description: The topic on which the automation scenario proposals are published.
     subscribe:
       operationId: getAutomationScenarioProposals
