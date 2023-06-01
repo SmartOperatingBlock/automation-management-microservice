@@ -1,3 +1,16 @@
+## [1.1.5](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.4...1.1.5) (2023-06-01)
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.27 ([cfe171b](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/cfe171bee54cc21584f2ebbbcf9cb08b94fbebb0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.29 ([d8efee7](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/d8efee7f434c5199758427285818917df81c3fac))
+
+
+### Documentation
+
+* **asyncapi:** correct automation proposal topic name ([08924b2](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/08924b21b21e9b00bb817f581d9fd6cc9f3736e3))
+
 ## [1.1.4](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.3...1.1.4) (2023-05-31)
 
 
