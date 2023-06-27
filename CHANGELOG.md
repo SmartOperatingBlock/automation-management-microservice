@@ -1,3 +1,33 @@
+## [1.1.6](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.5...1.1.6) (2023-06-27)
+
+
+### Dependency updates
+
+* **deps:** update dependency com.azure:azure-digitaltwins-core to v1.3.10 ([aa9401a](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/aa9401a2bd710e95ad0db3dccb5f653f3e8c7a9d))
+* **deps:** update dependency com.azure:azure-identity to v1.9.1 ([195f863](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/195f86385e400438216ff145a9fb145976e423a0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.30 ([ae62652](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/ae62652ef102750db24da79d2adb1f8ff4eb4a51))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.32 ([25e3bad](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/25e3badfdfb15694ffa97df3b53a818e642d0faa))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.33 ([eac0d4e](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/eac0d4e7981e20547d61b2f537f8ec4d4513daa9))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.34 ([2e01f01](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/2e01f014c964870ef62c90f5c184371e6afd3524))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.35 ([0aa6d03](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/0aa6d03207e4e340d341e07be93825672f7a8876))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.36 ([133141a](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/133141a38cb0f47dd3ad33d036cf38e1ee6c8425))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.37 ([79d5d39](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/79d5d39fde392c60e67d77847a0f037aa6c81f39))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.38 ([6d97d5c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/6d97d5c912a9a2b4f9c3bfae8f81d5fc55eb8116))
+* **deps:** update plugin com.gradle.enterprise to v3.13.4 ([e4309f7](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/e4309f72a808735564b22230774507b4150115bb))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.8 ([3f56958](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/3f5695851058e92710a1ae176b42b028f12bac54))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.9 ([8c798a0](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/8c798a084997505321d22712c399a606fb77da5a))
+
+
+### Documentation
+
+* correct title in asyncapi documentation ([3b1b43c](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/3b1b43c65f3f67badea70929a3d7992b3e2087c7))
+
+
+### Build and continuous integration
+
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.2 ([f76bb13](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/f76bb1327267e79e2bc7ae5ef64d84dd7f2fd664))
+* **deps:** update smartoperatingblock/release-and-delivery-action action to v1.0.3 ([45a194a](https://github.com/SmartOperatingBlock/automation-management-microservice/commit/45a194a414cecded85c0c16f51e05a379963ad3e))
+
 ## [1.1.5](https://github.com/SmartOperatingBlock/automation-management-microservice/compare/1.1.4...1.1.5) (2023-06-01)
 
 
