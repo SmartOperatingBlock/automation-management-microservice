@@ -5,7 +5,7 @@ tags:
   - name: medical technologies support
   - name: environment monitoring and management
 info:
-  title: Automation Scenario Microservice
+  title: Automation Management Microservice
   version: 1.0.0
   description: |
     The Automation Management Microservice of the Smart Operating Block project.
