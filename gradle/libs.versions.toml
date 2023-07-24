@@ -1,5 +1,5 @@
 [versions]
-junit = "5.9.3"
+junit = "5.10.0"
 wot = "1.15"
 
 [libraries]
