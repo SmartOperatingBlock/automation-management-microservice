@@ -24,4 +24,4 @@ java-testing = [
 ]
 
 [plugins]
-java-qa = { id = "org.danilopianini.gradle-java-qa", version = "1.21.0"}
+java-qa = { id = "org.danilopianini.gradle-java-qa", version = "1.22.0"}
