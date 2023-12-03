@@ -11,7 +11,7 @@ gson = { module = "com.google.code.gson:gson", version = "2.10.1" }
 jacamo = { module = "org.jacamo:jacamo", version = "1.1" }
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
-kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.5.0-ce"}
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version = "7.5.2-ce"}
 kafka-json = { module = "io.confluent:kafka-json-serializer", version = "7.5.2"}
 snakeyaml = { module = "org.yaml:snakeyaml", version = "2.2" }
 wot-servient = { module = "city.sane.wot-servient:wot-servient", version.ref = "wot" }
